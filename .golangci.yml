@@ -3,3 +3,4 @@ run:
   timeout: 5m
 linters:
   default: standard
+  enable:
