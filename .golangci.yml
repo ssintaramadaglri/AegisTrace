@@ -4,3 +4,4 @@ run:
 linters:
   default: standard
   enable:
+    - bodyclose
