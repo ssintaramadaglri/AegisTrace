@@ -6,3 +6,4 @@ linters:
   enable:
     - bodyclose
     - errorlint
+    - gosec
