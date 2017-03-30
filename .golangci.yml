@@ -5,3 +5,4 @@ linters:
   default: standard
   enable:
     - bodyclose
+    - errorlint
