@@ -8,3 +8,4 @@ linters:
     - errorlint
     - gosec
     - misspell
+    - nilerr
