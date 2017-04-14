@@ -5,3 +5,5 @@ before:
     - go mod tidy
 builds:
   - id: aegis
+    main: ./cmd/aegis
+    binary: aegis
