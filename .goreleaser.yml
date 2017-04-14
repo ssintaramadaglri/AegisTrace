@@ -2,3 +2,5 @@ version: 2
 project_name: aegistrace
 before:
   hooks:
+    - go mod tidy
+builds:
