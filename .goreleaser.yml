@@ -7,3 +7,4 @@ builds:
   - id: aegis
     main: ./cmd/aegis
     binary: aegis
+    env:
