@@ -8,3 +8,4 @@ builds:
     main: ./cmd/aegis
     binary: aegis
     env:
+      - CGO_ENABLED=0
