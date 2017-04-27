@@ -12,3 +12,5 @@ builds:
     goos: [linux, windows, darwin]
     goarch: [amd64, arm64]
 archives:
+  - formats: [tar.gz]
+    format_overrides:
