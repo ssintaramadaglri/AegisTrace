@@ -17,3 +17,6 @@ The compiler parses one YAML document with unknown-field rejection. Normalizatio
 The runtime accepts only artifacts whose digest and static properties validate again at load time. It resolves explicit input and prior-step references, enforces step, tool, token, and wall-clock budgets, and invokes all external effects through the provider interface.
 
 ## Packages
+
+- `workflow`: versioned schemas and artifact digest
+- `compiler`: strict parsing, normalization, artifact persistence
