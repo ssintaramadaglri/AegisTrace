@@ -22,3 +22,6 @@ The runtime accepts only artifacts whose digest and static properties validate a
 - `compiler`: strict parsing, normalization, artifact persistence
 - `verifier`: graph and policy admission
 - `runtime`: execution, budgets, expression resolution, replay
+- `provider`: isolated effect implementations
+- `journal`: append-only event persistence and chain verification
+- `checkpoint`: atomic resumable state snapshots
