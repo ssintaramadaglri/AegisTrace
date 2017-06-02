@@ -20,3 +20,5 @@ The runtime accepts only artifacts whose digest and static properties validate a
 
 - `workflow`: versioned schemas and artifact digest
 - `compiler`: strict parsing, normalization, artifact persistence
+- `verifier`: graph and policy admission
+- `runtime`: execution, budgets, expression resolution, replay
