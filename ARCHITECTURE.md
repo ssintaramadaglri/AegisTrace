@@ -27,3 +27,6 @@ The runtime accepts only artifacts whose digest and static properties validate a
 - `checkpoint`: atomic resumable state snapshots
 - `proof`: Merkle inclusion paths and Ed25519 signatures
 - `policy`: scoped, expiring capability tokens
+- `cmd/aegis`: user-facing orchestration
+
+## Determinism
