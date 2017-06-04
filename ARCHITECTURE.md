@@ -25,3 +25,5 @@ The runtime accepts only artifacts whose digest and static properties validate a
 - `provider`: isolated effect implementations
 - `journal`: append-only event persistence and chain verification
 - `checkpoint`: atomic resumable state snapshots
+- `proof`: Merkle inclusion paths and Ed25519 signatures
+- `policy`: scoped, expiring capability tokens
