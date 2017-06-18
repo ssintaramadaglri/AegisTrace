@@ -30,3 +30,5 @@ The runtime accepts only artifacts whose digest and static properties validate a
 - `cmd/aegis`: user-facing orchestration
 
 ## Determinism
+
+External model and tool services are nondeterministic. A live AegisTrace run therefore cannot guarantee equal outputs across repeated network calls. Instead, the journal makes the state transition history deterministic after recording. Replay validates the complete hash chain and reconstructs outputs without network access.
