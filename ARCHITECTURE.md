@@ -35,3 +35,5 @@ External model and tool services are nondeterministic. A live AegisTrace run the
 
 ## Cryptographic domains
 
+Artifact sealing, journal chaining, Merkle trees, proof signatures, and capabilities use separate serialized messages. Signature inputs include explicit protocol labels to prevent cross-protocol reuse. AegisTrace uses Go's standard SHA-256 and Ed25519 implementations and does not implement cryptographic primitives.
+
