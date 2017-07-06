@@ -22,3 +22,10 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 - Scoped, expiring Ed25519 capability tokens
 - OpenAI-compatible, Anthropic, Gemini, Ollama, MCP, and echo providers
 - `compile`, `verify`, `run`, `replay`, `inspect`, `keygen`, `prove`, and `verify-proof` commands
+
+### Fixed
+
+- Replay refuses journals whose chain diverges before the requested event
+- MCP responses larger than 8 MiB are rejected instead of buffered
+
+## [0.9.0] - 2026-03-27
