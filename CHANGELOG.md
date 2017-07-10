@@ -29,3 +29,9 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 - MCP responses larger than 8 MiB are rejected instead of buffered
 
 ## [0.9.0] - 2026-03-27
+
+### Added
+
+- Artifact digest verification on every load path
+- Per-step token budgeting and deadline propagation to HTTP providers
+- `aegis inspect --event` for reading a single verified event
