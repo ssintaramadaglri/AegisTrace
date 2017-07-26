@@ -42,3 +42,9 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 
 ## [0.8.1] - 2025-08-08
 
+### Fixed
+
+- Checkpoint writes are atomic on Windows (write-then-rename)
+- Journal sequence numbers survive interrupted runs
+
+## [0.8.0] - 2025-01-15
