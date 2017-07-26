@@ -48,3 +48,10 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 - Journal sequence numbers survive interrupted runs
 
 ## [0.8.0] - 2025-01-15
+
+### Added
+
+- `aegis-checkpoint/v1` checkpoint format with crash-safe state capture
+- Approval steps that block guarded execution until confirmed
+
+## [0.7.1] - 2024-01-26
