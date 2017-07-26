@@ -35,3 +35,10 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 - Artifact digest verification on every load path
 - Per-step token budgeting and deadline propagation to HTTP providers
 - `aegis inspect --event` for reading a single verified event
+
+### Changed
+
+- Unknown artifact fields are rejected as hard errors
+
+## [0.8.1] - 2025-08-08
+
