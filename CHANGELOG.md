@@ -61,3 +61,10 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 - Capability scope comparison is exact, not prefix-based
 - Expired tokens are rejected before the provider boundary
 
+## [0.7.0] - 2023-02-10
+
+### Added
+
+- Merkle inclusion proofs (`aegis-proof/v1`) with Ed25519 signatures
+- `aegis keygen`, `aegis prove`, and `aegis verify-proof` commands
+
