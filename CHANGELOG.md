@@ -55,3 +55,9 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 - Approval steps that block guarded execution until confirmed
 
 ## [0.7.1] - 2024-01-26
+
+### Fixed
+
+- Capability scope comparison is exact, not prefix-based
+- Expired tokens are rejected before the provider boundary
+
