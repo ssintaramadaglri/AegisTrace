@@ -74,3 +74,10 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 
 - Cycle detection covers `on_error` edges
 - Budget exhaustion emits a terminal `run.failed` event
+
+## [0.6.0] - 2021-03-05
+
+### Added
+
+- MCP adapter behind an explicit endpoint and token
+- Ollama and deterministic echo adapters
