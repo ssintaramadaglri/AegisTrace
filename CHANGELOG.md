@@ -68,3 +68,9 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 - Merkle inclusion proofs (`aegis-proof/v1`) with Ed25519 signatures
 - `aegis keygen`, `aegis prove`, and `aegis verify-proof` commands
 
+## [0.6.1] - 2022-03-22
+
+### Fixed
+
+- Cycle detection covers `on_error` edges
+- Budget exhaustion emits a terminal `run.failed` event
