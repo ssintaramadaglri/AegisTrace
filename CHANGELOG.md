@@ -81,3 +81,9 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 
 - MCP adapter behind an explicit endpoint and token
 - Ollama and deterministic echo adapters
+- Provider response size cap (8 MiB)
+
+## [0.5.0] - 2020-01-17
+
+### Added
+
