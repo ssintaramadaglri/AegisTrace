@@ -87,3 +87,10 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 
 ### Added
 
+- Append-only JSONL journal with a SHA-256 hash chain
+- Offline replay that verifies the chain and never calls a provider
+
+## [0.4.0] - 2019-02-21
+
+### Added
+
