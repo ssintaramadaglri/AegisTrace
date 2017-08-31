@@ -94,3 +94,9 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 
 ### Added
 
+- Budgeted runtime: step, tool-call, token, and timeout limits
+- `on_error` edges and terminal failure events
+
+## [0.3.0] - 2018-04-09
+
+### Added
