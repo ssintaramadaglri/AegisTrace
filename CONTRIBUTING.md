@@ -4,3 +4,4 @@ Contributions should preserve the small trusted core and explicit format boundar
 
 ## Workflow
 
+1. Open an issue for format or security-boundary changes.
