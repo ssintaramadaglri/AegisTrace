@@ -6,3 +6,4 @@ COPY . .
 RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/aegis ./cmd/aegis
 
 FROM gcr.io/distroless/static-debian12:nonroot
+COPY --from=build /out/aegis /usr/local/bin/aegis
