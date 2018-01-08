@@ -20,3 +20,5 @@ fmt:
 	gofmt -w $$(find . -name '*.go')
 
 lint:
+	golangci-lint run
+
