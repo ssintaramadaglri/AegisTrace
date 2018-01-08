@@ -15,3 +15,5 @@ race:
 
 vet:
 	go vet ./...
+
+fmt:
