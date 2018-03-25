@@ -8,3 +8,4 @@ A provider receives a context deadline and a request containing run ID, step ID,
 
 Providers must not retain request credentials in response metadata. They should return errors for non-2xx responses, malformed payloads, or absent expected output.
 
+## MCP
