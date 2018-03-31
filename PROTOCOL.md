@@ -11,3 +11,4 @@ Providers must not retain request credentials in response metadata. They should 
 ## MCP
 
 The MCP adapter sends JSON-RPC 2.0 method `tools/call` with the admitted workflow action as `name` and resolved step input as `arguments`. Bearer authentication is optional and supplied only from `AEGIS_MCP_TOKEN`.
+
