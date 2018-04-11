@@ -35,3 +35,13 @@ Source is compiled with unknown-field rejection, statically verified, and sealed
 |---|---|
 | `aegis compile` | Parse, normalize, verify, and seal a workflow |
 | `aegis verify` | Recheck artifact digest and static invariants |
+| `aegis run` | Execute with budgets, approvals, checkpoints, and journaling |
+| `aegis replay` | Validate and reconstruct a run without network access |
+| `aegis inspect` | Read a verified event or complete journal |
+| `aegis keygen` | Generate a local Ed25519 attestation key |
+| `aegis prove` | Create a signed Merkle inclusion proof |
+| `aegis verify-proof` | Verify a proof independently of its journal |
+
+## Features
+
+- Strict YAML compiler with unknown-field rejection
