@@ -24,3 +24,14 @@ The runtime treats model and tool calls as effects. Live runs invoke configured 
 AegisTrace is an early, working release. The local runtime, compiler, verifier, journal, replay, checkpoints, proof system, capability tokens, HTTP model adapters, MCP adapter, and CLI are implemented. Distributed scheduling, database backends, and OpenTelemetry export are roadmap items.
 
 ## How it works
+
+<div align="center">
+  <img src="docs/assets/pipeline.svg" alt="AegisTrace pipeline: YAML source is compiled and statically verified into a sealed artifact, then executed while recording a hash-chained journal, checkpoints, and a signed proof, with a separate offline replay path" width="760" />
+</div>
+
+Source is compiled with unknown-field rejection, statically verified, and sealed into a digest-locked artifact. At run time the runtime drives every external effect through the provider boundary, writes each transition into the hash-chained journal, and can produce a signed Merkle proof. Replay reconstructs the run from the journal and never reaches a provider.
+
+| Command | Purpose |
+|---|---|
+| `aegis compile` | Parse, normalize, verify, and seal a workflow |
+| `aegis verify` | Recheck artifact digest and static invariants |
