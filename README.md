@@ -45,3 +45,13 @@ Source is compiled with unknown-field rejection, statically verified, and sealed
 ## Features
 
 - Strict YAML compiler with unknown-field rejection
+- SHA-256 sealed, portable JSON artifacts
+- Static validation of graph reachability, cycles, budgets, references, and tool permissions
+- Budgeted execution with model, tool, approval, checkpoint, and emit steps
+- Atomic local checkpoints for crash-safe state capture
+- Append-only JSONL journal with a SHA-256 hash chain
+- Offline replay with chain verification
+- Merkle inclusion proofs signed with Ed25519
+- Short-lived Ed25519 capability tokens with scoped permissions
+- OpenAI-compatible, Anthropic, Gemini, Ollama, MCP, and deterministic local adapters
+- Zero Python runtime dependency
