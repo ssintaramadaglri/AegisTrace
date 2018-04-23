@@ -55,3 +55,14 @@ Source is compiled with unknown-field rejection, statically verified, and sealed
 - Short-lived Ed25519 capability tokens with scoped permissions
 - OpenAI-compatible, Anthropic, Gemini, Ollama, MCP, and deterministic local adapters
 - Zero Python runtime dependency
+
+## What AegisTrace proves
+
+AegisTrace separates claims it can verify from properties that remain outside the runtime boundary.
+
+<div align="center">
+  <img src="docs/assets/proof-chain.svg" alt="AegisTrace journal chain and Merkle proof: an altered event breaks the chain, a valid inclusion path verifies without the journal, replay contacts no provider, and an expired capability is rejected" width="700" />
+</div>
+
+| Question | Evidence |
+|---|---|
