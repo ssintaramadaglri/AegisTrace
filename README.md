@@ -66,3 +66,13 @@ AegisTrace separates claims it can verify from properties that remain outside th
 
 | Question | Evidence |
 |---|---|
+| Was this workflow altered after compilation? | Artifact digest validation |
+| Could the graph run forever? | Cycles are rejected before admission |
+| Was a tool undeclared? | Exact tool permission verification |
+| Was an event changed, removed, or reordered? | Journal sequence and hash-chain validation |
+| Is one event included in an attested run? | Signed Merkle inclusion proof |
+| Did replay contact an external provider? | Replay has no provider execution path |
+| Can this capability invoke the requested scope now? | Ed25519 signature, scope, and expiry checks |
+
+AegisTrace does not certify that a model response is correct, that an allowed tool is safe, or that a compromised host is trustworthy. Those boundaries are explicit so attestations remain meaningful.
+
