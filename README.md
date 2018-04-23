@@ -76,3 +76,14 @@ AegisTrace separates claims it can verify from properties that remain outside th
 
 AegisTrace does not certify that a model response is correct, that an allowed tool is safe, or that a compromised host is trustworthy. Those boundaries are explicit so attestations remain meaningful.
 
+## Failure behavior
+
+The runtime fails closed at each boundary:
+
+- Unknown YAML fields stop compilation.
+- Modified or unknown artifact formats stop loading.
+- Missing inputs and prior-step outputs stop the affected step.
+- Provider response bodies larger than 8 MiB are rejected.
+- Workflow deadlines cancel in-flight HTTP requests.
+- Exhausted step, tool, or token budgets terminate the run.
+- Missing approval prevents guarded execution.
