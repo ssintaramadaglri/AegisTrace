@@ -87,3 +87,13 @@ The runtime fails closed at each boundary:
 - Workflow deadlines cancel in-flight HTTP requests.
 - Exhausted step, tool, or token budgets terminate the run.
 - Missing approval prevents guarded execution.
+- Journal-chain divergence prevents replay and proof creation.
+- Invalid signatures, roots, paths, scopes, and expirations prevent verification.
+
+Provider errors may follow an explicitly verified `on_error` edge. Without that edge, the journal records a terminal `run.failed` event.
+
+## Operational model
+
+For local development, one `aegis` process owns the workflow, provider registry, journal writer, and checkpoint directory. This keeps the trusted execution path small and makes the binary easy to inspect and deploy.
+
+For production use, run AegisTrace with a dedicated service identity, separate credentials by provider, keep MCP permissions narrow, encrypt journals and checkpoints at rest, and move attestation keys into a managed signer. The artifact and proof formats do not depend on a particular storage platform, so future distributed workers can preserve the same verification model.
