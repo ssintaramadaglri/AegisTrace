@@ -108,3 +108,13 @@ source review -> compile -> verify -> sign/release artifact
                                       |
                          journal + checkpoints + proof
                                       |
+                                      v
+                              audit / replay / CI
+```
+
+## Install
+
+AegisTrace requires Go 1.22 or newer.
+
+```sh
+go install github.com/aegistrace/aegistrace/cmd/aegis@latest
