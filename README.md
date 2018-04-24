@@ -118,3 +118,13 @@ AegisTrace requires Go 1.22 or newer.
 
 ```sh
 go install github.com/aegistrace/aegistrace/cmd/aegis@latest
+```
+
+From a checkout:
+
+```sh
+go build -o aegis ./cmd/aegis
+go test ./...
+```
+
+## Quick start
