@@ -128,3 +128,14 @@ go test ./...
 ```
 
 ## Quick start
+
+Compile and verify the example:
+
+```sh
+aegis compile examples/echo-agent.yaml -o echo.aegis
+aegis verify echo.aegis
+```
+
+Run it and retain the audit journal:
+
+```sh
