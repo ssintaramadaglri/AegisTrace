@@ -149,3 +149,14 @@ Replay and inspect without invoking tools:
 ```sh
 aegis replay run.atlog
 aegis inspect run.atlog --event 2
+```
+
+Create a signed inclusion proof:
+
+```sh
+aegis keygen -o signing-key.json
+aegis prove run.atlog --event 2 --key signing-key.json -o event.proof.json
+aegis verify-proof event.proof.json
+```
+
+## Workflow example
