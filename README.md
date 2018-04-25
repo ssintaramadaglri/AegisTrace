@@ -139,3 +139,13 @@ aegis verify echo.aegis
 Run it and retain the audit journal:
 
 ```sh
+aegis run echo.aegis \
+  --input '{"message":"Investigate checkout latency"}' \
+  --journal run.atlog
+```
+
+Replay and inspect without invoking tools:
+
+```sh
+aegis replay run.atlog
+aegis inspect run.atlog --event 2
