@@ -170,3 +170,14 @@ budget:
   max_tool_calls: 1
   max_tokens: 1000
   timeout: 30s
+permissions:
+  - tool: ticket.create
+steps:
+  - id: classify
+    kind: model
+    provider: echo
+    input:
+      prompt: ${input.message}
+  - id: save
+    kind: checkpoint
+  - id: create
