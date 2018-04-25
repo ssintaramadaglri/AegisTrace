@@ -181,3 +181,13 @@ steps:
   - id: save
     kind: checkpoint
   - id: create
+    kind: tool
+    provider: echo
+    action: ticket.create
+    requires_approval: true
+    input:
+      classification: ${steps.classify}
+  - id: result
+    kind: emit
+    input:
+      ticket: ${steps.create}
