@@ -191,3 +191,13 @@ steps:
     kind: emit
     input:
       ticket: ${steps.create}
+```
+
+Blank `next` fields are normalized to the following step. Explicit `next` and `on_error` edges are supported. Workflows must form a finite DAG; unbounded loops are rejected.
+
+## Providers
+
+`echo` is always available and makes no network calls. Other adapters are enabled only when their endpoint environment variable is set.
+
+| Provider | Endpoint variable | Credential variable |
+|---|---|---|
