@@ -160,3 +160,13 @@ aegis verify-proof event.proof.json
 ```
 
 ## Workflow example
+
+```yaml
+name: issue-triage
+version: "1"
+entry: classify
+budget:
+  max_steps: 8
+  max_tool_calls: 1
+  max_tokens: 1000
+  timeout: 30s
