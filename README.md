@@ -222,3 +222,14 @@ Read [SECURITY.md](SECURITY.md) and [THREAT_MODEL.md](THREAT_MODEL.md) before pr
 - Journal: newline-delimited JSON with per-event chaining
 - Proof: `aegis-proof/v1` JSON
 - Capability: signed compact token with `aegis-cap/v1` domain separation
+- Checkpoint: `aegis-checkpoint/v1` JSON
+
+Versioned formats are documented in [SPECIFICATION.md](SPECIFICATION.md). Unknown artifact fields are rejected to prevent ambiguous interpretation.
+
+## Repository layout
+
+```text
+cmd/aegis/      command-line interface
+workflow/       portable schema and artifact seal
+compiler/       strict source compiler
+verifier/       static admission checks
