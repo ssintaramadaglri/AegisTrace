@@ -6,3 +6,4 @@
 4. Update `CHANGELOG.md` and the CLI version.
 5. Create a signed semantic-version tag.
 6. Build archives with GoReleaser and publish checksums.
+7. Verify one archive on each supported operating-system family.
