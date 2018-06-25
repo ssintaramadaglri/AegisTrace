@@ -14,3 +14,5 @@
 
 - [ ] Encrypted journal envelopes
 - [ ] Resume command backed by validated checkpoints
+- [ ] Structured secret-redaction hooks
+- [ ] OpenTelemetry traces and metrics
