@@ -19,3 +19,5 @@
 - [ ] Provider conformance suite and retry policies
 - [ ] Stable library API review
 
+## 0.3 — Distributed execution
+
