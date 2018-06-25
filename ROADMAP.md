@@ -16,3 +16,6 @@
 - [ ] Resume command backed by validated checkpoints
 - [ ] Structured secret-redaction hooks
 - [ ] OpenTelemetry traces and metrics
+- [ ] Provider conformance suite and retry policies
+- [ ] Stable library API review
+
