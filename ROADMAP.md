@@ -12,3 +12,5 @@
 
 ## 0.2 — Operational hardening
 
+- [ ] Encrypted journal envelopes
+- [ ] Resume command backed by validated checkpoints
