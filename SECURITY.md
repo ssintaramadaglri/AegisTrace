@@ -10,3 +10,4 @@ Do not open a public issue for a suspected vulnerability. Send a minimal reprodu
 
 Reports should identify the affected version, operating system, expected boundary, observed behavior, and reproduction steps. Maintainers will acknowledge a complete report within five business days.
 
+## Key handling
