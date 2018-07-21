@@ -13,3 +13,4 @@ Reports should identify the affected version, operating system, expected boundar
 ## Key handling
 
 `aegis keygen` writes private keys with owner-only permissions where the operating system supports them. Production deployments should use an HSM or managed signing service; the local JSON key format is intended for development and offline signing. Never commit signing keys, provider credentials, capability tokens, journals, or checkpoints.
+
