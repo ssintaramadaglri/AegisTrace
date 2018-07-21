@@ -18,3 +18,4 @@ Reports should identify the affected version, operating system, expected boundar
 
 Hash chaining provides integrity evidence, not encryption. Journals may contain prompts, model output, tool arguments, and tool results. Protect them with filesystem controls and encrypt storage or transport as required by the deployment.
 
+## Cryptography
