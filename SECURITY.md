@@ -19,3 +19,5 @@ Reports should identify the affected version, operating system, expected boundar
 Hash chaining provides integrity evidence, not encryption. Journals may contain prompts, model output, tool arguments, and tool results. Protect them with filesystem controls and encrypt storage or transport as required by the deployment.
 
 ## Cryptography
+
+AegisTrace uses cryptographic implementations from Go's standard library. It does not invent encryption, signature, or hashing algorithms. Post-quantum algorithms are not currently used by the stable formats.
