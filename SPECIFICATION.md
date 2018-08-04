@@ -7,3 +7,5 @@ An artifact is JSON containing `magic`, `format`, `digest`, `compiled_at`, and `
 A loader must reject an invalid magic value, unknown format, digest mismatch, unknown JSON field, or workflow that no longer passes static verification.
 
 ## Workflow
+
+A workflow has a name, version, entry step, budget, permissions, and steps. Step IDs are unique. Valid kinds are `model`, `tool`, `approval`, `checkpoint`, and `emit`.
