@@ -9,3 +9,4 @@ A loader must reject an invalid magic value, unknown format, digest mismatch, un
 ## Workflow
 
 A workflow has a name, version, entry step, budget, permissions, and steps. Step IDs are unique. Valid kinds are `model`, `tool`, `approval`, `checkpoint`, and `emit`.
+
