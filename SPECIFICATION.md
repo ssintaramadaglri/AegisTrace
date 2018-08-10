@@ -14,3 +14,5 @@ A workflow has a name, version, entry step, budget, permissions, and steps. Step
 
 Input values may reference `${input.path}` or `${steps.id}`. References are resolved immediately before execution. Missing references fail closed.
 
+## Journal
+
