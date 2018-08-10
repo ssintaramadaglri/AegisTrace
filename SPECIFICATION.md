@@ -16,3 +16,5 @@ Input values may reference `${input.path}` or `${steps.id}`. References are reso
 
 ## Journal
 
+A journal is UTF-8 JSONL. Event sequence starts at zero. Each event contains sequence, UTC time, run ID, optional step ID, type, optional data, previous hash, and hash.
+
