@@ -22,3 +22,5 @@ The hash is lowercase hexadecimal SHA-256 over the JSON encoding of all event fi
 
 ## Merkle proof
 
+Leaves are the 32-byte journal event hashes. Internal nodes are SHA-256 of byte `0x01`, the left child, and the right child. An odd final node is duplicated. The root is signed over UTF-8 bytes `aegistrace-proof-v1\n<hex-root>` using Ed25519.
+
