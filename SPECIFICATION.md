@@ -20,3 +20,5 @@ A journal is UTF-8 JSONL. Event sequence starts at zero. Each event contains seq
 
 The hash is lowercase hexadecimal SHA-256 over the JSON encoding of all event fields except `hash`. The first event has an empty previous hash. Every later event must name the preceding event hash.
 
+## Merkle proof
+
