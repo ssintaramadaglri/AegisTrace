@@ -1,0 +1,4 @@
+# Threat Model
+
+## Protected assets
+
