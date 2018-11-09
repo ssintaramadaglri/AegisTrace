@@ -13,3 +13,6 @@
 AegisTrace considers malicious workflow authors, compromised or misleading model providers, untrusted MCP/tool servers, users who can modify stored artifacts or journals, and network attackers handled by the configured HTTPS transport.
 
 ## Guarantees
+
+- Modified artifacts fail digest validation.
+- Invalid graph structure and undeclared tool actions fail admission.
