@@ -23,3 +23,5 @@ AegisTrace considers malicious workflow authors, compromised or misleading model
 
 ## Non-guarantees
 
+- Journal confidentiality without encrypted storage
+- Truthfulness or safety of model output
