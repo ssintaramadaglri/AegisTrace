@@ -30,3 +30,5 @@ AegisTrace considers malicious workflow authors, compromised or misleading model
 - Availability of external services
 - Deterministic live output from external providers
 - Host integrity when the operating system is compromised
+
+## Primary controls
