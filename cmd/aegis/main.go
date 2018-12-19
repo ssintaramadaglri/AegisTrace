@@ -56,3 +56,16 @@ func main() {
 		usage()
 		err = fmt.Errorf("unknown command %q", os.Args[1])
 	}
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "error:", err)
+		os.Exit(1)
+	}
+}
+
+func compileCommand(args []string) error {
+	fs := flag.NewFlagSet("compile", flag.ContinueOnError)
+	output := fs.String("o", "", "output artifact")
+	if err := fs.Parse(interspersed(args)); err != nil {
+		return err
+	}
+	if fs.NArg() != 1 {
