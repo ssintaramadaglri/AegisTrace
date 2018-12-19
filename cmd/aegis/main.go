@@ -29,3 +29,16 @@ func main() {
 		os.Exit(2)
 	}
 	var err error
+	switch os.Args[1] {
+	case "compile":
+		err = compileCommand(os.Args[2:])
+	case "verify":
+		err = verifyCommand(os.Args[2:])
+	case "run":
+		err = runCommand(os.Args[2:])
+	case "replay":
+		err = replayCommand(os.Args[2:])
+	case "inspect":
+		err = inspectCommand(os.Args[2:])
+	case "keygen":
+		err = keygenCommand(os.Args[2:])
