@@ -42,3 +42,17 @@ func main() {
 		err = inspectCommand(os.Args[2:])
 	case "keygen":
 		err = keygenCommand(os.Args[2:])
+	case "prove":
+		err = proveCommand(os.Args[2:])
+	case "verify-proof":
+		err = verifyProofCommand(os.Args[2:])
+	case "version", "--version", "-v":
+		fmt.Println("aegis", version)
+		return
+	case "help", "--help", "-h":
+		usage()
+		return
+	default:
+		usage()
+		err = fmt.Errorf("unknown command %q", os.Args[1])
+	}
