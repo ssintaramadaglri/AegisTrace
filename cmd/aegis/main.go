@@ -69,3 +69,16 @@ func compileCommand(args []string) error {
 		return err
 	}
 	if fs.NArg() != 1 {
+		return fmt.Errorf("usage: aegis compile workflow.yaml [-o workflow.aegis]")
+	}
+	source, err := os.ReadFile(fs.Arg(0))
+	if err != nil {
+		return err
+	}
+	artifact, report, err := compiler.Compile(source, time.Now())
+	if err != nil {
+		return err
+	}
+	if *output == "" {
+		*output = fs.Arg(0) + ".aegis"
+	}
