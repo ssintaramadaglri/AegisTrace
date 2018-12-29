@@ -108,3 +108,16 @@ func verifyCommand(args []string) error {
 func runCommand(args []string) error {
 	fs := flag.NewFlagSet("run", flag.ContinueOnError)
 	journalPath := fs.String("journal", "run.atlog", "journal path")
+	inputJSON := fs.String("input", "{}", "JSON input")
+	approve := fs.Bool("approve", false, "approve guarded steps")
+	if err := fs.Parse(interspersed(args)); err != nil {
+		return err
+	}
+	if fs.NArg() != 1 {
+		return fmt.Errorf("usage: aegis run workflow.aegis [options]")
+	}
+	artifact, err := compiler.Load(fs.Arg(0))
+	if err != nil {
+		return err
+	}
+	var input map[string]any
