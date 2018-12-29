@@ -82,3 +82,16 @@ func compileCommand(args []string) error {
 	if *output == "" {
 		*output = fs.Arg(0) + ".aegis"
 	}
+	if err := compiler.Save(*output, artifact); err != nil {
+		return err
+	}
+	fmt.Printf("compiled %s\nverified %d steps, %d edges\ndigest   %s\n", *output, report.Steps, report.Edges, artifact.Digest)
+	return nil
+}
+
+func verifyCommand(args []string) error {
+	if len(args) != 1 {
+		return fmt.Errorf("usage: aegis verify workflow.aegis")
+	}
+	artifact, err := compiler.Load(args[0])
+	if err != nil {
