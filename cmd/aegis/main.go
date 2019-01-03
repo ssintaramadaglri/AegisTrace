@@ -121,3 +121,16 @@ func runCommand(args []string) error {
 		return err
 	}
 	var input map[string]any
+	if err := json.Unmarshal([]byte(*inputJSON), &input); err != nil {
+		return fmt.Errorf("input: %w", err)
+	}
+	runID, err := randomID()
+	if err != nil {
+		return err
+	}
+	writer, err := journal.Create(*journalPath, runID)
+	if err != nil {
+		return err
+	}
+	defer writer.Close()
+	registry := provider.NewRegistry()
