@@ -134,3 +134,16 @@ func runCommand(args []string) error {
 	}
 	defer writer.Close()
 	registry := provider.NewRegistry()
+	_ = registry.Register("echo", provider.Echo{})
+	registerEnvironment(registry)
+	engine := aegisruntime.Engine{Artifact: artifact, Providers: registry, Journal: writer, Checkpoints: checkpoint.FileStore{Directory: ".aegis/checkpoints"}}
+	if *approve {
+		engine.Approver = allowApprover{}
+	}
+	result, err := engine.Run(context.Background(), runID, input)
+	if err != nil {
+		return err
+	}
+	return printJSON(result)
+}
+
