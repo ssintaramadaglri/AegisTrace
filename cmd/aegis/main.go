@@ -147,3 +147,16 @@ func runCommand(args []string) error {
 	return printJSON(result)
 }
 
+type allowApprover struct{}
+
+func (allowApprover) Approve(_ context.Context, _ workflow.Step, _ map[string]any) error { return nil }
+
+func replayCommand(args []string) error {
+	if len(args) != 1 {
+		return fmt.Errorf("usage: aegis replay run.atlog")
+	}
+	events, err := journal.Load(args[0])
+	if err != nil {
+		return err
+	}
+	result, err := aegisruntime.Replay(events)
