@@ -160,3 +160,16 @@ func replayCommand(args []string) error {
 		return err
 	}
 	result, err := aegisruntime.Replay(events)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("replayed %d events with valid hash chain\n", len(events))
+	return printJSON(result)
+}
+
+func inspectCommand(args []string) error {
+	fs := flag.NewFlagSet("inspect", flag.ContinueOnError)
+	index := fs.Int("event", -1, "event index")
+	if err := fs.Parse(interspersed(args)); err != nil {
+		return err
+	}
