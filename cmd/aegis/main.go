@@ -173,3 +173,16 @@ func inspectCommand(args []string) error {
 	if err := fs.Parse(interspersed(args)); err != nil {
 		return err
 	}
+	if fs.NArg() != 1 {
+		return fmt.Errorf("usage: aegis inspect run.atlog --event N")
+	}
+	events, err := journal.Load(fs.Arg(0))
+	if err != nil {
+		return err
+	}
+	if err := journal.Verify(events); err != nil {
+		return err
+	}
+	if *index >= 0 {
+		if *index >= len(events) {
+			return fmt.Errorf("event out of range")
