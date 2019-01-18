@@ -186,3 +186,16 @@ func inspectCommand(args []string) error {
 	if *index >= 0 {
 		if *index >= len(events) {
 			return fmt.Errorf("event out of range")
+		}
+		return printJSON(events[*index])
+	}
+	return printJSON(events)
+}
+
+func keygenCommand(args []string) error {
+	fs := flag.NewFlagSet("keygen", flag.ContinueOnError)
+	output := fs.String("o", "aegis-signing-key.json", "key path")
+	if err := fs.Parse(interspersed(args)); err != nil {
+		return err
+	}
+	pub, err := proof.GenerateKey(*output)
