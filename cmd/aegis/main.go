@@ -199,3 +199,17 @@ func keygenCommand(args []string) error {
 		return err
 	}
 	pub, err := proof.GenerateKey(*output)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("created %s\npublic  %x\n", *output, []byte(pub))
+	return nil
+}
+
+func proveCommand(args []string) error {
+	fs := flag.NewFlagSet("prove", flag.ContinueOnError)
+	index := fs.Int("event", -1, "event index")
+	key := fs.String("key", "aegis-signing-key.json", "private key")
+	output := fs.String("o", "proof.json", "proof path")
+	if err := fs.Parse(interspersed(args)); err != nil {
+		return err
