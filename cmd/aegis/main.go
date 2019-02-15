@@ -226,3 +226,16 @@ func proveCommand(args []string) error {
 		return err
 	}
 	attestation, err := proof.Create(events, *index, private)
+	if err != nil {
+		return err
+	}
+	data, _ := json.MarshalIndent(attestation, "", "  ")
+	if err := os.WriteFile(*output, append(data, '\n'), 0o644); err != nil {
+		return err
+	}
+	fmt.Printf("created %s for event %d\nroot    %s\n", *output, *index, attestation.Root)
+	return nil
+}
+
+func verifyProofCommand(args []string) error {
+	if len(args) != 1 {
