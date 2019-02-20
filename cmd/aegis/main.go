@@ -239,3 +239,16 @@ func proveCommand(args []string) error {
 
 func verifyProofCommand(args []string) error {
 	if len(args) != 1 {
+		return fmt.Errorf("usage: aegis verify-proof proof.json")
+	}
+	data, err := os.ReadFile(args[0])
+	if err != nil {
+		return err
+	}
+	var attestation proof.Attestation
+	if err := json.Unmarshal(data, &attestation); err != nil {
+		return err
+	}
+	if err := proof.Verify(attestation); err != nil {
+		return err
+	}
