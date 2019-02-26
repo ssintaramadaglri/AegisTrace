@@ -252,3 +252,16 @@ func verifyProofCommand(args []string) error {
 	if err := proof.Verify(attestation); err != nil {
 		return err
 	}
+	fmt.Printf("verified event %d/%d, root %s\n", attestation.EventIndex, attestation.EventCount, attestation.Root)
+	return nil
+}
+
+func registerEnvironment(registry *provider.Registry) {
+	if endpoint := os.Getenv("AEGIS_OPENAI_ENDPOINT"); endpoint != "" {
+		_ = registry.Register("openai", &provider.HTTPModel{Name: "openai", Style: provider.OpenAI, Endpoint: endpoint, APIKey: os.Getenv("OPENAI_API_KEY"), Model: env("AEGIS_OPENAI_MODEL", "gpt-4o-mini")})
+	}
+	if endpoint := os.Getenv("AEGIS_ANTHROPIC_ENDPOINT"); endpoint != "" {
+		_ = registry.Register("anthropic", &provider.HTTPModel{Name: "anthropic", Style: provider.Anthropic, Endpoint: endpoint, APIKey: os.Getenv("ANTHROPIC_API_KEY"), Model: env("AEGIS_ANTHROPIC_MODEL", "claude-sonnet-4-20250514")})
+	}
+	if endpoint := os.Getenv("AEGIS_GEMINI_ENDPOINT"); endpoint != "" {
+		_ = registry.Register("gemini", &provider.HTTPModel{Name: "gemini", Style: provider.Gemini, Endpoint: endpoint, APIKey: os.Getenv("GEMINI_API_KEY"), Model: env("AEGIS_GEMINI_MODEL", "gemini-2.5-flash")})
