@@ -15,3 +15,11 @@ import (
 )
 
 func Parse(source []byte) (workflow.Workflow, error) {
+	var w workflow.Workflow
+	dec := yaml.NewDecoder(bytes.NewReader(source))
+	dec.KnownFields(true)
+	if err := dec.Decode(&w); err != nil {
+		return w, fmt.Errorf("parse workflow: %w", err)
+	}
+	var extra any
+	if err := dec.Decode(&extra); err != io.EOF {
