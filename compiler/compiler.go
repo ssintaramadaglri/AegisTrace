@@ -23,3 +23,10 @@ func Parse(source []byte) (workflow.Workflow, error) {
 	}
 	var extra any
 	if err := dec.Decode(&extra); err != io.EOF {
+		return w, fmt.Errorf("workflow must contain one YAML document")
+	}
+	normalize(&w)
+	return w, nil
+}
+
+func normalize(w *workflow.Workflow) {
