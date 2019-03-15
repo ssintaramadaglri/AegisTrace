@@ -38,3 +38,11 @@ func normalize(w *workflow.Workflow) {
 	}
 	if w.Budget.MaxSteps == 0 {
 		w.Budget.MaxSteps = max(32, len(w.Steps)*2)
+	}
+	if w.Budget.Timeout == 0 {
+		w.Budget.Timeout = time.Minute
+	}
+	for i := 0; i+1 < len(w.Steps); i++ {
+		if w.Steps[i].Next == "" {
+			w.Steps[i].Next = w.Steps[i+1].ID
+		}
