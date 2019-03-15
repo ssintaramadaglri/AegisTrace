@@ -46,3 +46,11 @@ func normalize(w *workflow.Workflow) {
 		if w.Steps[i].Next == "" {
 			w.Steps[i].Next = w.Steps[i+1].ID
 		}
+	}
+}
+
+func Compile(source []byte, now time.Time) (workflow.Artifact, verifier.Report, error) {
+	w, err := Parse(source)
+	if err != nil {
+		return workflow.Artifact{}, verifier.Report{}, err
+	}
