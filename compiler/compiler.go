@@ -62,3 +62,10 @@ func Compile(source []byte, now time.Time) (workflow.Artifact, verifier.Report, 
 	return artifact, report, err
 }
 
+func Save(path string, artifact workflow.Artifact) error {
+	data, err := json.MarshalIndent(artifact, "", "  ")
+	if err != nil {
+		return fmt.Errorf("encode artifact: %w", err)
+	}
+	data = append(data, '\n')
+	if err := os.WriteFile(path, data, 0o644); err != nil {
