@@ -69,3 +69,11 @@ func Save(path string, artifact workflow.Artifact) error {
 	}
 	data = append(data, '\n')
 	if err := os.WriteFile(path, data, 0o644); err != nil {
+		return fmt.Errorf("write artifact: %w", err)
+	}
+	return nil
+}
+
+func Load(path string) (workflow.Artifact, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
