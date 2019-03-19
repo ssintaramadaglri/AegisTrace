@@ -54,3 +54,11 @@ func Compile(source []byte, now time.Time) (workflow.Artifact, verifier.Report, 
 	if err != nil {
 		return workflow.Artifact{}, verifier.Report{}, err
 	}
+	report := verifier.Verify(w)
+	if err := report.Error(); err != nil {
+		return workflow.Artifact{}, report, err
+	}
+	artifact, err := workflow.NewArtifact(w, now)
+	return artifact, report, err
+}
+
