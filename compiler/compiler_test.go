@@ -6,3 +6,9 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/aegistrace/aegistrace/compiler"
+)
+
+const validWorkflow = `
+name: test
