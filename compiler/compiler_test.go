@@ -25,3 +25,10 @@ steps:
     kind: emit
     input:
       value: ok
+  - id: second
+    kind: tool
+    provider: echo
+    action: task.create
+`
+
+func TestCompileNormalizesAndSeals(t *testing.T) {
