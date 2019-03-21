@@ -19,3 +19,9 @@ budget:
   max_tokens: 50
   timeout: 2s
 permissions:
+  - tool: task.create
+steps:
+  - id: first
+    kind: emit
+    input:
+      value: ok
