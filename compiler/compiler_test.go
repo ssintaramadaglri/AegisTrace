@@ -38,3 +38,10 @@ func TestCompileNormalizesAndSeals(t *testing.T) {
 		t.Fatal(err)
 	}
 	if report.Steps != 2 || artifact.Workflow.Entry != "first" {
+		t.Fatalf("unexpected report or entry: %#v %#v", report, artifact.Workflow)
+	}
+	if artifact.Workflow.Steps[0].Next != "second" {
+		t.Fatal("sequential edge was not normalized")
+	}
+	if err := artifact.ValidateSeal(); err != nil {
+		t.Fatal(err)
