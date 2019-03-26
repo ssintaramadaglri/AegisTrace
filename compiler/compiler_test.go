@@ -45,3 +45,9 @@ func TestCompileNormalizesAndSeals(t *testing.T) {
 	}
 	if err := artifact.ValidateSeal(); err != nil {
 		t.Fatal(err)
+	}
+
+	path := filepath.Join(t.TempDir(), "test.aegis")
+	if err := compiler.Save(path, artifact); err != nil {
+		t.Fatal(err)
+	}
