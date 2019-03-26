@@ -51,3 +51,10 @@ func TestCompileNormalizesAndSeals(t *testing.T) {
 	if err := compiler.Save(path, artifact); err != nil {
 		t.Fatal(err)
 	}
+	loaded, err := compiler.Load(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if loaded.Digest != artifact.Digest {
+		t.Fatal("digest changed after load")
+	}
