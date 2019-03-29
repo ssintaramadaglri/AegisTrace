@@ -24,3 +24,17 @@ func (f ApproverFunc) Approve(ctx context.Context, step workflow.Step, input map
 type Observer interface{ Event(string, map[string]any) }
 type ObserverFunc func(string, map[string]any)
 
+func (f ObserverFunc) Event(name string, fields map[string]any) { f(name, fields) }
+
+type Engine struct {
+	Artifact    workflow.Artifact
+	Providers   *provider.Registry
+	Journal     *journal.Writer
+	Checkpoints checkpoint.Store
+	Approver    Approver
+	Observer    Observer
+}
+
+type Result struct {
+	RunID     string         `json:"run_id"`
+	Output    any            `json:"output"`
