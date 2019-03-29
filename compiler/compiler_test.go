@@ -58,3 +58,10 @@ func TestCompileNormalizesAndSeals(t *testing.T) {
 	if loaded.Digest != artifact.Digest {
 		t.Fatal("digest changed after load")
 	}
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	data = []byte(strings.Replace(string(data), `"name": "test"`, `"name": "changed"`, 1))
+	if err := os.WriteFile(path, data, 0o600); err != nil {
