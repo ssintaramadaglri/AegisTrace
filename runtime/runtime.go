@@ -38,3 +38,18 @@ type Engine struct {
 type Result struct {
 	RunID     string         `json:"run_id"`
 	Output    any            `json:"output"`
+	Outputs   map[string]any `json:"outputs"`
+	Steps     int            `json:"steps"`
+	ToolCalls int            `json:"tool_calls"`
+	Tokens    int            `json:"tokens"`
+	Duration  time.Duration  `json:"duration"`
+}
+
+func (e *Engine) Run(ctx context.Context, runID string, input map[string]any) (Result, error) {
+	result := Result{RunID: runID, Outputs: make(map[string]any)}
+	if e.Providers == nil || e.Journal == nil {
+		return result, fmt.Errorf("providers and journal are required")
+	}
+	budget := e.Artifact.Workflow.Budget
+	ctx, cancel := context.WithTimeout(ctx, budget.Timeout)
+	defer cancel()
