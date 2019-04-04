@@ -82,3 +82,17 @@ func (e *Engine) Run(ctx context.Context, runID string, input map[string]any) (R
 		output, tokens, err := e.execute(ctx, runID, step, resolved, result)
 		result.Steps++
 		if err != nil {
+			_, _ = e.Journal.Append("step.failed", step.ID, map[string]any{"error": err.Error()})
+			if step.OnError != "" {
+				current = step.OnError
+				continue
+			}
+			return result, e.fail("step "+step.ID, err)
+		}
+		if step.Kind == "tool" {
+			result.ToolCalls++
+		}
+		result.Tokens += tokens
+		if budget.MaxTokens > 0 && result.Tokens > budget.MaxTokens {
+			return result, e.fail("token budget exhausted", nil)
+		}
