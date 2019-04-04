@@ -96,3 +96,18 @@ func (e *Engine) Run(ctx context.Context, runID string, input map[string]any) (R
 		if budget.MaxTokens > 0 && result.Tokens > budget.MaxTokens {
 			return result, e.fail("token budget exhausted", nil)
 		}
+		result.Output, result.Outputs[step.ID] = output, output
+		_, _ = e.Journal.Append("step.completed", step.ID, map[string]any{"output": output, "tokens": tokens})
+		if step.Kind == "checkpoint" && e.Checkpoints != nil {
+			state := checkpoint.State{RunID: runID, WorkflowDigest: e.Artifact.Digest, NextStep: step.Next, Outputs: result.Outputs, Steps: result.Steps, ToolCalls: result.ToolCalls, Tokens: result.Tokens}
+			if err := e.Checkpoints.Save(state); err != nil {
+				return result, e.fail("save checkpoint", err)
+			}
+			_, _ = e.Journal.Append("checkpoint.saved", step.ID, map[string]any{"next": step.Next})
+		}
+		current = step.Next
+	}
+	result.Duration = time.Since(started)
+	_, err := e.Journal.Append("run.completed", "", map[string]any{"output": result.Output, "steps": result.Steps, "tools": result.ToolCalls, "tokens": result.Tokens})
+	if err != nil {
+		return result, err
