@@ -67,3 +67,18 @@ func (e *Engine) Run(ctx context.Context, runID string, input map[string]any) (R
 		if result.Steps >= budget.MaxSteps {
 			return result, e.fail("step budget exhausted", nil)
 		}
+		step, ok := steps[current]
+		if !ok {
+			return result, e.fail("missing admitted step "+current, nil)
+		}
+		resolved, err := resolveMap(step.Input, input, result.Outputs)
+		if err != nil {
+			return result, e.stepFailure(step, err)
+		}
+		_, _ = e.Journal.Append("step.started", step.ID, map[string]any{"kind": step.Kind, "input": resolved})
+		if e.Observer != nil {
+			e.Observer.Event("step.started", map[string]any{"run_id": runID, "step_id": step.ID, "kind": step.Kind})
+		}
+		output, tokens, err := e.execute(ctx, runID, step, resolved, result)
+		result.Steps++
+		if err != nil {
