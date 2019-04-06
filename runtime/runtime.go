@@ -111,3 +111,17 @@ func (e *Engine) Run(ctx context.Context, runID string, input map[string]any) (R
 	_, err := e.Journal.Append("run.completed", "", map[string]any{"output": result.Output, "steps": result.Steps, "tools": result.ToolCalls, "tokens": result.Tokens})
 	if err != nil {
 		return result, err
+	}
+	return result, nil
+}
+
+func (e *Engine) execute(ctx context.Context, runID string, step workflow.Step, input map[string]any, result Result) (any, int, error) {
+	if step.RequiresApproval || step.Kind == "approval" {
+		if e.Approver == nil {
+			return nil, 0, fmt.Errorf("approval required")
+		}
+		if err := e.Approver.Approve(ctx, step, input); err != nil {
+			return nil, 0, err
+		}
+		if step.Kind == "approval" {
+			return map[string]any{"approved": true}, 0, nil
