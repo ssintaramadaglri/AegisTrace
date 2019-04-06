@@ -125,3 +125,18 @@ func (e *Engine) execute(ctx context.Context, runID string, step workflow.Step, 
 		}
 		if step.Kind == "approval" {
 			return map[string]any{"approved": true}, 0, nil
+		}
+	}
+	switch step.Kind {
+	case "model", "tool":
+		if step.Kind == "tool" {
+			if result.ToolCalls >= e.Artifact.Workflow.Budget.MaxToolCalls {
+				return nil, 0, fmt.Errorf("tool-call budget exhausted")
+			}
+		}
+		p, err := e.Providers.Get(step.Provider)
+		if err != nil {
+			return nil, 0, err
+		}
+		response, err := p.Execute(ctx, provider.Request{RunID: runID, StepID: step.ID, Action: step.Action, Input: input, MaxTokens: e.Artifact.Workflow.Budget.MaxTokens - result.Tokens})
+		return response.Output, response.UsageTokens, err
