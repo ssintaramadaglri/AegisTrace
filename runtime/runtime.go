@@ -140,3 +140,17 @@ func (e *Engine) execute(ctx context.Context, runID string, step workflow.Step, 
 		}
 		response, err := p.Execute(ctx, provider.Request{RunID: runID, StepID: step.ID, Action: step.Action, Input: input, MaxTokens: e.Artifact.Workflow.Budget.MaxTokens - result.Tokens})
 		return response.Output, response.UsageTokens, err
+	case "checkpoint":
+		return map[string]any{"checkpoint": step.ID}, 0, nil
+	case "emit":
+		return input, 0, nil
+	default:
+		return nil, 0, fmt.Errorf("unsupported admitted step kind %q", step.Kind)
+	}
+}
+
+func (e *Engine) fail(message string, cause error) error {
+	text := message
+	if cause != nil {
+		text += ": " + cause.Error()
+	}
