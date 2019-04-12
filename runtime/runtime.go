@@ -183,3 +183,18 @@ func Replay(events []journal.Event) (Result, error) {
 		case "run.failed":
 			return result, fmt.Errorf("recorded run failed: %v", event.Data["error"])
 		}
+	}
+	return result, nil
+}
+
+func eventInt(value any) int {
+	switch number := value.(type) {
+	case int:
+		return number
+	case int64:
+		return int(number)
+	case float64:
+		return int(number)
+	default:
+		return 0
+	}
