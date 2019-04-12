@@ -169,3 +169,17 @@ func Replay(events []journal.Event) (Result, error) {
 	result.Outputs = make(map[string]any)
 	for _, event := range events {
 		if result.RunID == "" {
+			result.RunID = event.RunID
+		}
+		switch event.Type {
+		case "step.completed":
+			result.Steps++
+			result.Output = event.Data["output"]
+			result.Outputs[event.StepID] = result.Output
+		case "run.completed":
+			result.Output = event.Data["output"]
+			result.ToolCalls = eventInt(event.Data["tools"])
+			result.Tokens = eventInt(event.Data["tokens"])
+		case "run.failed":
+			return result, fmt.Errorf("recorded run failed: %v", event.Data["error"])
+		}
