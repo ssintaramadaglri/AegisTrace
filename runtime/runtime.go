@@ -198,3 +198,17 @@ func eventInt(value any) int {
 	default:
 		return 0
 	}
+}
+
+func resolveMap(values map[string]any, input, outputs map[string]any) (map[string]any, error) {
+	out := make(map[string]any, len(values))
+	for key, value := range values {
+		resolved, err := resolve(value, input, outputs)
+		if err != nil {
+			return nil, fmt.Errorf("%s: %w", key, err)
+		}
+		out[key] = resolved
+	}
+	return out, nil
+}
+func resolve(value any, input, outputs map[string]any) (any, error) {
