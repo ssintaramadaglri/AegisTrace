@@ -26,3 +26,9 @@ func TestRunCheckpointAndReplay(t *testing.T) {
 	calls := 0
 	registry := provider.NewRegistry()
 	if err := registry.Register("test", provider.Func(func(_ context.Context, request provider.Request) (provider.Response, error) {
+		calls++
+		return provider.Response{Output: request.Input, UsageTokens: 2}, nil
+	})); err != nil {
+		t.Fatal(err)
+	}
+	dir := t.TempDir()
