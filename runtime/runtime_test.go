@@ -32,3 +32,8 @@ func TestRunCheckpointAndReplay(t *testing.T) {
 		t.Fatal(err)
 	}
 	dir := t.TempDir()
+	path := filepath.Join(dir, "run.atlog")
+	writer, err := journal.Create(path, "integration-run")
+	if err != nil {
+		t.Fatal(err)
+	}
