@@ -42,3 +42,9 @@ func TestRunCheckpointAndReplay(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	if err := writer.Close(); err != nil {
+		t.Fatal(err)
+	}
+	if calls != 2 || result.Steps != 3 || result.ToolCalls != 1 || result.Tokens != 4 {
+		t.Fatalf("unexpected result: calls=%d result=%+v", calls, result)
+	}
