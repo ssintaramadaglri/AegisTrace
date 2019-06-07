@@ -9,3 +9,10 @@ import (
 	"time"
 )
 
+const (
+	ArtifactMagic   = "AEGISTRACE"
+	ArtifactVersion = "aegis/v1"
+)
+
+type Budget struct {
+	MaxSteps     int           `json:"max_steps" yaml:"max_steps"`
