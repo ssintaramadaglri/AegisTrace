@@ -48,3 +48,8 @@ func TestRunCheckpointAndReplay(t *testing.T) {
 	if calls != 2 || result.Steps != 3 || result.ToolCalls != 1 || result.Tokens != 4 {
 		t.Fatalf("unexpected result: calls=%d result=%+v", calls, result)
 	}
+	state, err := (checkpoint.FileStore{Directory: filepath.Join(dir, "checkpoints")}).Load("integration-run")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if state.NextStep != "tool" {
