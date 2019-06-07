@@ -53,3 +53,8 @@ func TestRunCheckpointAndReplay(t *testing.T) {
 		t.Fatal(err)
 	}
 	if state.NextStep != "tool" {
+		t.Fatalf("unexpected checkpoint: %+v", state)
+	}
+	events, err := journal.Load(path)
+	if err != nil {
+		t.Fatal(err)
