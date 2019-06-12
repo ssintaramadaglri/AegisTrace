@@ -24,3 +24,10 @@ type Budget struct {
 func (b *Budget) UnmarshalYAML(unmarshal func(any) error) error {
 	var raw struct {
 		MaxSteps     int    `yaml:"max_steps"`
+		MaxToolCalls int    `yaml:"max_tool_calls"`
+		MaxTokens    int    `yaml:"max_tokens"`
+		Timeout      string `yaml:"timeout"`
+	}
+	if err := unmarshal(&raw); err != nil {
+		return err
+	}
