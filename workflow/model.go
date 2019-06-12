@@ -31,3 +31,11 @@ func (b *Budget) UnmarshalYAML(unmarshal func(any) error) error {
 	if err := unmarshal(&raw); err != nil {
 		return err
 	}
+	b.MaxSteps, b.MaxToolCalls, b.MaxTokens = raw.MaxSteps, raw.MaxToolCalls, raw.MaxTokens
+	if raw.Timeout == "" {
+		b.Timeout = time.Minute
+		return nil
+	}
+	d, err := time.ParseDuration(raw.Timeout)
+	if err != nil {
+		return fmt.Errorf("invalid timeout %q: %w", raw.Timeout, err)
