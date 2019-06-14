@@ -47,3 +47,10 @@ func (b *Budget) UnmarshalYAML(unmarshal func(any) error) error {
 type Permission struct {
 	Tool   string   `json:"tool" yaml:"tool"`
 	Scopes []string `json:"scopes,omitempty" yaml:"scopes,omitempty"`
+}
+
+type Step struct {
+	ID               string         `json:"id" yaml:"id"`
+	Kind             string         `json:"kind" yaml:"kind"`
+	Provider         string         `json:"provider,omitempty" yaml:"provider,omitempty"`
+	Action           string         `json:"action,omitempty" yaml:"action,omitempty"`
