@@ -69,3 +69,11 @@ type Workflow struct {
 	Permissions []Permission      `json:"permissions,omitempty" yaml:"permissions,omitempty"`
 	Metadata    map[string]string `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 	Steps       []Step            `json:"steps" yaml:"steps"`
+}
+
+type Artifact struct {
+	Magic      string    `json:"magic"`
+	Format     string    `json:"format"`
+	Digest     string    `json:"digest"`
+	CompiledAt time.Time `json:"compiled_at"`
+	Workflow   Workflow  `json:"workflow"`
