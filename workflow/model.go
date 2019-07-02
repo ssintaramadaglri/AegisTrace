@@ -62,3 +62,10 @@ type Step struct {
 
 type Workflow struct {
 	Name        string            `json:"name" yaml:"name"`
+	Version     string            `json:"version" yaml:"version"`
+	Description string            `json:"description,omitempty" yaml:"description,omitempty"`
+	Entry       string            `json:"entry" yaml:"entry"`
+	Budget      Budget            `json:"budget" yaml:"budget"`
+	Permissions []Permission      `json:"permissions,omitempty" yaml:"permissions,omitempty"`
+	Metadata    map[string]string `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+	Steps       []Step            `json:"steps" yaml:"steps"`
