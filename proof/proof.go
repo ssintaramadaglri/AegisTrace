@@ -27,3 +27,16 @@ type Attestation struct {
 	Path       []Sibling `json:"path"`
 	PublicKey  string    `json:"public_key"`
 	Signature  string    `json:"signature"`
+}
+
+type KeyFile struct {
+	Version string `json:"version"`
+	Public  string `json:"public"`
+	Private string `json:"private"`
+}
+
+func GenerateKey(path string) (ed25519.PublicKey, error) {
+	pub, priv, err := ed25519.GenerateKey(rand.Reader)
+	if err != nil {
+		return nil, fmt.Errorf("generate key: %w", err)
+	}
