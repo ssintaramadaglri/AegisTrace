@@ -67,3 +67,16 @@ func LoadPrivate(path string) (ed25519.PrivateKey, error) {
 	return ed25519.PrivateKey(raw), nil
 }
 
+func Create(events []journal.Event, index int, private ed25519.PrivateKey) (Attestation, error) {
+	if err := journal.Verify(events); err != nil {
+		return Attestation{}, err
+	}
+	if index < 0 || index >= len(events) {
+		return Attestation{}, fmt.Errorf("event index out of range")
+	}
+	leaves, err := eventLeaves(events)
+	if err != nil {
+		return Attestation{}, err
+	}
+	path, root := merklePath(leaves, index)
+	message := []byte("aegistrace-proof-v1\n" + hex.EncodeToString(root))
