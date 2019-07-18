@@ -93,3 +93,17 @@ func Verify(a Attestation) error {
 		return fmt.Errorf("invalid proof header")
 	}
 	leaf, err := hex.DecodeString(a.EventHash)
+	if err != nil || len(leaf) != sha256.Size {
+		return fmt.Errorf("invalid event hash")
+	}
+	current := leaf
+	for _, sibling := range a.Path {
+		raw, err := hex.DecodeString(sibling.Hash)
+		if err != nil || len(raw) != sha256.Size {
+			return fmt.Errorf("invalid sibling hash")
+		}
+		if sibling.Left {
+			current = nodeHash(raw, current)
+		} else {
+			current = nodeHash(current, raw)
+		}
