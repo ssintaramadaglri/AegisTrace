@@ -120,3 +120,16 @@ func Verify(a Attestation) error {
 		return fmt.Errorf("invalid signature encoding")
 	}
 	if !ed25519.Verify(pub, []byte("aegistrace-proof-v1\n"+a.Root), sig) {
+		return fmt.Errorf("signature verification failed")
+	}
+	return nil
+}
+
+func eventLeaves(events []journal.Event) ([][]byte, error) {
+	out := make([][]byte, len(events))
+	for i, e := range events {
+		raw, err := hex.DecodeString(e.Hash)
+		if err != nil || len(raw) != sha256.Size {
+			return nil, fmt.Errorf("event %d has invalid hash", i)
+		}
+		out[i] = raw
