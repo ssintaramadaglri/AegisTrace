@@ -80,3 +80,16 @@ func Create(events []journal.Event, index int, private ed25519.PrivateKey) (Atte
 	}
 	path, root := merklePath(leaves, index)
 	message := []byte("aegistrace-proof-v1\n" + hex.EncodeToString(root))
+	pub := private.Public().(ed25519.PublicKey)
+	return Attestation{
+		Version: "aegis-proof/v1", EventIndex: index, EventCount: len(events), EventHash: events[index].Hash,
+		Root: hex.EncodeToString(root), Path: path, PublicKey: base64.StdEncoding.EncodeToString(pub),
+		Signature: base64.StdEncoding.EncodeToString(ed25519.Sign(private, message)),
+	}, nil
+}
+
+func Verify(a Attestation) error {
+	if a.Version != "aegis-proof/v1" || a.EventCount <= 0 || a.EventIndex < 0 || a.EventIndex >= a.EventCount {
+		return fmt.Errorf("invalid proof header")
+	}
+	leaf, err := hex.DecodeString(a.EventHash)
