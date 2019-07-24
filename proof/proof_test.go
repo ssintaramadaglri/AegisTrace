@@ -11,3 +11,10 @@ import (
 )
 
 func TestAttestation(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "run.atlog")
+	writer, err := journal.Create(path, "proof-run")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for i := 0; i < 5; i++ {
+		if _, err := writer.Append("event", "", map[string]any{"number": i}); err != nil {
