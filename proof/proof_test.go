@@ -18,3 +18,10 @@ func TestAttestation(t *testing.T) {
 	}
 	for i := 0; i < 5; i++ {
 		if _, err := writer.Append("event", "", map[string]any{"number": i}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := writer.Close(); err != nil {
+		t.Fatal(err)
+	}
+	events, err := journal.Load(path)
