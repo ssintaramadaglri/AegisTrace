@@ -32,3 +32,10 @@ func TestAttestation(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	attestation, err := proof.Create(events, 3, private)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := proof.Verify(attestation); err != nil {
+		t.Fatal(err)
+	}
