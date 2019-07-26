@@ -25,3 +25,10 @@ func TestAttestation(t *testing.T) {
 		t.Fatal(err)
 	}
 	events, err := journal.Load(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, private, err := ed25519.GenerateKey(rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
