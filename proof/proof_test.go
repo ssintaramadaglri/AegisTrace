@@ -39,3 +39,10 @@ func TestAttestation(t *testing.T) {
 	if err := proof.Verify(attestation); err != nil {
 		t.Fatal(err)
 	}
+	attestation.EventHash = events[2].Hash
+	if err := proof.Verify(attestation); err == nil {
+		t.Fatal("tampered proof verified")
+	}
+}
+
+func TestKeyFileRoundTrip(t *testing.T) {
