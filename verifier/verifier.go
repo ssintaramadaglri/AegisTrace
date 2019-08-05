@@ -64,3 +64,16 @@ func Verify(w workflow.Workflow) Report {
 		if p.Tool == "" {
 			add("permissions", "tool cannot be empty")
 		}
+		permissions[p.Tool] = true
+	}
+	allowedKinds := map[string]bool{"model": true, "tool": true, "approval": true, "checkpoint": true, "emit": true}
+	for i, s := range w.Steps {
+		path := fmt.Sprintf("steps[%d]", i)
+		if s.ID == "" {
+			add(path+".id", "is required")
+			continue
+		}
+		if _, exists := steps[s.ID]; exists {
+			add(path+".id", "duplicate id "+s.ID)
+		}
+		steps[s.ID] = s
