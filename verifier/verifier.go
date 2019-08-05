@@ -38,3 +38,16 @@ func Verify(w workflow.Workflow) Report {
 	if strings.TrimSpace(w.Name) == "" {
 		add("name", "is required")
 	}
+	if strings.TrimSpace(w.Version) == "" {
+		add("version", "is required")
+	}
+	if w.Budget.MaxSteps <= 0 {
+		add("budget.max_steps", "must be positive")
+	}
+	if w.Budget.MaxToolCalls < 0 {
+		add("budget.max_tool_calls", "cannot be negative")
+	}
+	if w.Budget.MaxTokens < 0 {
+		add("budget.max_tokens", "cannot be negative")
+	}
+	if w.Budget.Timeout <= 0 || w.Budget.Timeout > 24*time.Hour {
