@@ -51,3 +51,16 @@ func Verify(w workflow.Workflow) Report {
 		add("budget.max_tokens", "cannot be negative")
 	}
 	if w.Budget.Timeout <= 0 || w.Budget.Timeout > 24*time.Hour {
+		add("budget.timeout", "must be between 1ns and 24h")
+	}
+	if len(w.Steps) == 0 {
+		add("steps", "at least one step is required")
+		return r
+	}
+
+	steps := make(map[string]workflow.Step, len(w.Steps))
+	permissions := make(map[string]bool)
+	for _, p := range w.Permissions {
+		if p.Tool == "" {
+			add("permissions", "tool cannot be empty")
+		}
