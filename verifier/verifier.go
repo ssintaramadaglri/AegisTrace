@@ -90,3 +90,16 @@ func Verify(w workflow.Workflow) Report {
 			if !permissions[s.Action] && !permissions["*"] {
 				add(path+".action", "tool is not permitted")
 			}
+		}
+	}
+	if _, ok := steps[w.Entry]; !ok {
+		add("entry", "does not reference a step")
+	}
+	for i, s := range w.Steps {
+		for field, target := range map[string]string{"next": s.Next, "on_error": s.OnError} {
+			if target != "" {
+				r.Edges++
+				if _, ok := steps[target]; !ok {
+					add(fmt.Sprintf("steps[%d].%s", i, field), "unknown target "+target)
+				}
+			}
