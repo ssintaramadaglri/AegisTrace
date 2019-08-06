@@ -103,3 +103,16 @@ func Verify(w workflow.Workflow) Report {
 					add(fmt.Sprintf("steps[%d].%s", i, field), "unknown target "+target)
 				}
 			}
+		}
+	}
+	if len(r.Issues) > 0 {
+		return r
+	}
+	verifyGraph(w.Entry, steps, &r)
+	return r
+}
+
+func verifyGraph(entry string, steps map[string]workflow.Step, r *Report) {
+	state := make(map[string]uint8)
+	reachable := make(map[string]bool)
+	var visit func(string)
