@@ -20,3 +20,7 @@ func TestVerifyAcceptsFiniteWorkflow(t *testing.T) {
 	}
 }
 
+func TestVerifyRejectsCycleAndUnreachableStep(t *testing.T) {
+	w := base()
+	w.Steps = []workflow.Step{{ID: "a", Kind: "emit", Next: "b"}, {ID: "b", Kind: "emit", Next: "a"}, {ID: "orphan", Kind: "emit"}}
+	err := verifier.Verify(w).Error()
