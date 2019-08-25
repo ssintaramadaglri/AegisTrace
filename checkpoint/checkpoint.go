@@ -22,3 +22,11 @@ type State struct {
 	ToolCalls      int            `json:"tool_calls"`
 	Tokens         int            `json:"tokens"`
 	SavedAt        time.Time      `json:"saved_at"`
+}
+
+type Store interface {
+	Save(State) error
+	Load(string) (State, error)
+}
+type FileStore struct{ Directory string }
+
