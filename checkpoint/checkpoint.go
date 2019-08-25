@@ -5,3 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
+	"regexp"
+	"time"
+)
+
+var safeID = regexp.MustCompile(`^[a-zA-Z0-9._-]+$`)
+
+type State struct {
