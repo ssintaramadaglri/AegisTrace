@@ -39,3 +39,12 @@ func (s FileStore) Save(state State) error {
 	}
 	state.Version, state.SavedAt = "aegis-checkpoint/v1", time.Now().UTC()
 	data, err := json.MarshalIndent(state, "", "  ")
+	if err != nil {
+		return err
+	}
+	path := filepath.Join(s.Directory, state.RunID+".json")
+	temp := path + ".tmp"
+	if err := os.WriteFile(temp, append(data, '\n'), 0o600); err != nil {
+		return err
+	}
+	if err := os.Rename(temp, path); err != nil {
