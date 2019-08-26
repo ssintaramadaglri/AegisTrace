@@ -233,3 +233,37 @@ cmd/aegis/      command-line interface
 workflow/       portable schema and artifact seal
 compiler/       strict source compiler
 verifier/       static admission checks
+runtime/        budgeted execution and replay
+journal/        tamper-evident event log
+proof/          Merkle and Ed25519 attestations
+policy/         scoped capability tokens
+provider/       model, MCP, and local adapters
+checkpoint/     atomic state persistence
+examples/       runnable workflows
+```
+
+## Design principles
+
+1. Verify before execution.
+2. Put every external effect behind a provider boundary.
+3. Record results, not secrets required to obtain them.
+4. Make tampering detectable with standard cryptography.
+5. Keep formats small, explicit, and versioned.
+6. Prefer reproducibility and clear failure over hidden recovery.
+
+## Development
+
+```sh
+go fmt ./...
+go vet ./...
+go test -race ./...
+go build ./cmd/aegis
+```
+
+Every source file must remain below 500 lines. Contributions should add focused packages rather than expanding central files indefinitely.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
+
+<!-- draft note 36 -->
