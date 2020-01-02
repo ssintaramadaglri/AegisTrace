@@ -24,3 +24,12 @@ type Claims struct {
 func Issue(private ed25519.PrivateKey, issuer, subject string, scopes []string, ttl time.Duration, now time.Time) (string, error) {
 	if issuer == "" || subject == "" {
 		return "", fmt.Errorf("issuer and subject are required")
+	}
+	if ttl <= 0 || ttl > 24*time.Hour {
+		return "", fmt.Errorf("ttl must be between 1ns and 24h")
+	}
+	nonce := make([]byte, 16)
+	if _, err := rand.Read(nonce); err != nil {
+		return "", err
+	}
+	claims := Claims{issuer, subject, append([]string(nil), scopes...), now.UTC(), now.Add(ttl).UTC(), hex.EncodeToString(nonce)}
