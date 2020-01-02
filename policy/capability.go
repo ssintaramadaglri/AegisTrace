@@ -41,3 +41,12 @@ func Issue(private ed25519.PrivateKey, issuer, subject string, scopes []string, 
 	return base64.RawURLEncoding.EncodeToString(payload) + "." + base64.RawURLEncoding.EncodeToString(signature), nil
 }
 
+func Verify(token string, public ed25519.PublicKey, requiredScope string, now time.Time) (Claims, error) {
+	var claims Claims
+	parts := strings.Split(token, ".")
+	if len(parts) != 2 {
+		return claims, fmt.Errorf("malformed capability")
+	}
+	payload, err := base64.RawURLEncoding.DecodeString(parts[0])
+	if err != nil {
+		return claims, fmt.Errorf("decode capability: %w", err)
