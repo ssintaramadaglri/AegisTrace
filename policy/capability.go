@@ -33,3 +33,11 @@ func Issue(private ed25519.PrivateKey, issuer, subject string, scopes []string, 
 		return "", err
 	}
 	claims := Claims{issuer, subject, append([]string(nil), scopes...), now.UTC(), now.Add(ttl).UTC(), hex.EncodeToString(nonce)}
+	payload, err := json.Marshal(claims)
+	if err != nil {
+		return "", err
+	}
+	signature := ed25519.Sign(private, append([]byte("aegis-cap/v1."), payload...))
+	return base64.RawURLEncoding.EncodeToString(payload) + "." + base64.RawURLEncoding.EncodeToString(signature), nil
+}
+
