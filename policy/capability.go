@@ -50,3 +50,12 @@ func Verify(token string, public ed25519.PublicKey, requiredScope string, now ti
 	payload, err := base64.RawURLEncoding.DecodeString(parts[0])
 	if err != nil {
 		return claims, fmt.Errorf("decode capability: %w", err)
+	}
+	sig, err := base64.RawURLEncoding.DecodeString(parts[1])
+	if err != nil {
+		return claims, fmt.Errorf("decode signature: %w", err)
+	}
+	if !ed25519.Verify(public, append([]byte("aegis-cap/v1."), payload...), sig) {
+		return claims, fmt.Errorf("invalid capability signature")
+	}
+	if err := json.Unmarshal(payload, &claims); err != nil {
