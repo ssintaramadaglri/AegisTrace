@@ -6,3 +6,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/aegistrace/aegistrace/policy"
+)
+
+func TestCapabilityScopeAndExpiry(t *testing.T) {
+	public, private, err := ed25519.GenerateKey(rand.Reader)
