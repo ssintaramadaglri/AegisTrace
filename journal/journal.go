@@ -25,3 +25,18 @@ type Event struct {
 
 type Writer struct {
 	mu       sync.Mutex
+	file     *os.File
+	runID    string
+	next     uint64
+	previous string
+}
+
+func Create(path, runID string) (*Writer, error) {
+	f, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0o600)
+	if err != nil {
+		return nil, fmt.Errorf("create journal: %w", err)
+	}
+	return &Writer{file: f, runID: runID}, nil
+}
+
+func (w *Writer) Append(kind, stepID string, data map[string]any) (Event, error) {
