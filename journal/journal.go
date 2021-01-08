@@ -82,3 +82,17 @@ func Load(path string) ([]Event, error) {
 	defer f.Close()
 	var events []Event
 	s := bufio.NewScanner(f)
+	s.Buffer(make([]byte, 64*1024), 4*1024*1024)
+	for line := 1; s.Scan(); line++ {
+		var e Event
+		if err := json.Unmarshal(s.Bytes(), &e); err != nil {
+			return nil, fmt.Errorf("journal line %d: %w", line, err)
+		}
+		events = append(events, e)
+	}
+	if err := s.Err(); err != nil {
+		return nil, fmt.Errorf("read journal: %w", err)
+	}
+	return events, nil
+}
+
