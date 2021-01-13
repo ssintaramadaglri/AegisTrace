@@ -96,3 +96,17 @@ func Load(path string) ([]Event, error) {
 	return events, nil
 }
 
+func Verify(events []Event) error {
+	previous := ""
+	for i, e := range events {
+		if e.Sequence != uint64(i) {
+			return fmt.Errorf("event %d has sequence %d", i, e.Sequence)
+		}
+		if e.Previous != previous {
+			return fmt.Errorf("event %d previous hash mismatch", i)
+		}
+		have := e.Hash
+		e.Hash = ""
+		want, err := hashEvent(e)
+		if err != nil {
+			return err
