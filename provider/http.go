@@ -43,3 +43,18 @@ func (p *HTTPModel) Execute(ctx context.Context, request Request) (Response, err
 	}
 	req.Header.Set("Content-Type", "application/json")
 	switch p.Style {
+	case Anthropic:
+		req.Header.Set("x-api-key", p.APIKey)
+		req.Header.Set("anthropic-version", "2023-06-01")
+	case Gemini:
+		if p.APIKey != "" {
+			req.Header.Set("x-goog-api-key", p.APIKey)
+		}
+	default:
+		if p.APIKey != "" {
+			req.Header.Set("Authorization", "Bearer "+p.APIKey)
+		}
+	}
+	client := p.Client
+	if client == nil {
+		client = &http.Client{Timeout: 90 * time.Second}
