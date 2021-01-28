@@ -72,3 +72,18 @@ func (p *HTTPModel) Execute(ctx context.Context, request Request) (Response, err
 		return Response{}, fmt.Errorf("%s returned %s: %s", p.Name, resp.Status, strings.TrimSpace(string(raw)))
 	}
 	return p.parseResponse(raw)
+}
+
+func (p *HTTPModel) requestBody(r Request) map[string]any {
+	prompt := promptFrom(r.Input)
+	switch p.Style {
+	case Anthropic:
+		return map[string]any{"model": p.Model, "max_tokens": max(1, r.MaxTokens), "messages": []any{map[string]any{"role": "user", "content": prompt}}}
+	case Gemini:
+		return map[string]any{"contents": []any{map[string]any{"role": "user", "parts": []any{map[string]any{"text": prompt}}}}, "generationConfig": map[string]any{"maxOutputTokens": max(1, r.MaxTokens)}}
+	default:
+		return map[string]any{"model": p.Model, "messages": []any{map[string]any{"role": "user", "content": prompt}}, "max_tokens": max(1, r.MaxTokens)}
+	}
+}
+
+func (p *HTTPModel) parseResponse(raw []byte) (Response, error) {
