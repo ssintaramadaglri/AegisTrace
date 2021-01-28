@@ -28,3 +28,18 @@ type HTTPModel struct {
 	Client   *http.Client
 }
 
+func (p *HTTPModel) Execute(ctx context.Context, request Request) (Response, error) {
+	if p.Endpoint == "" || p.Model == "" {
+		return Response{}, fmt.Errorf("provider %s is not configured", p.Name)
+	}
+	body := p.requestBody(request)
+	encoded, err := json.Marshal(body)
+	if err != nil {
+		return Response{}, err
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, p.Endpoint, bytes.NewReader(encoded))
+	if err != nil {
+		return Response{}, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	switch p.Style {
