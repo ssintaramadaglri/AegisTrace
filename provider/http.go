@@ -87,3 +87,18 @@ func (p *HTTPModel) requestBody(r Request) map[string]any {
 }
 
 func (p *HTTPModel) parseResponse(raw []byte) (Response, error) {
+	var doc map[string]any
+	if err := json.Unmarshal(raw, &doc); err != nil {
+		return Response{}, fmt.Errorf("decode %s response: %w", p.Name, err)
+	}
+	var text string
+	switch p.Style {
+	case Anthropic:
+		text = nestedText(doc, "content", "text")
+	case Gemini:
+		text = geminiText(doc)
+	default:
+		text = openAIText(doc)
+	}
+	if text == "" {
+		return Response{}, fmt.Errorf("%s response contained no text", p.Name)
