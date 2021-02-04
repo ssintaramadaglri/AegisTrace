@@ -102,3 +102,17 @@ func (p *HTTPModel) parseResponse(raw []byte) (Response, error) {
 	}
 	if text == "" {
 		return Response{}, fmt.Errorf("%s response contained no text", p.Name)
+	}
+	return Response{Output: text, UsageTokens: usage(doc), Metadata: map[string]string{"provider": p.Name, "model": p.Model}}, nil
+}
+
+func promptFrom(input map[string]any) string {
+	if v, ok := input["prompt"].(string); ok {
+		return v
+	}
+	raw, _ := json.Marshal(input)
+	return string(raw)
+}
+func openAIText(d map[string]any) string {
+	choices, _ := d["choices"].([]any)
+	if len(choices) == 0 {
