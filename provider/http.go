@@ -116,3 +116,18 @@ func promptFrom(input map[string]any) string {
 func openAIText(d map[string]any) string {
 	choices, _ := d["choices"].([]any)
 	if len(choices) == 0 {
+		return ""
+	}
+	c, _ := choices[0].(map[string]any)
+	m, _ := c["message"].(map[string]any)
+	s, _ := m["content"].(string)
+	return s
+}
+func nestedText(d map[string]any, list, field string) string {
+	xs, _ := d[list].([]any)
+	if len(xs) == 0 {
+		return ""
+	}
+	x, _ := xs[0].(map[string]any)
+	s, _ := x[field].(string)
+	return s
