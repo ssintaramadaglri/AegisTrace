@@ -22,3 +22,12 @@ type rpcRequest struct {
 	Params  any    `json:"params"`
 }
 type rpcResponse struct {
+	Result any `json:"result"`
+	Error  *struct {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	} `json:"error"`
+}
+
+func (m *MCP) Execute(ctx context.Context, request Request) (Response, error) {
+	if m.Endpoint == "" {
