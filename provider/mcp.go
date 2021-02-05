@@ -31,3 +31,12 @@ type rpcResponse struct {
 
 func (m *MCP) Execute(ctx context.Context, request Request) (Response, error) {
 	if m.Endpoint == "" {
+		return Response{}, fmt.Errorf("MCP endpoint is not configured")
+	}
+	payload := rpcRequest{"2.0", 1, "tools/call", map[string]any{"name": request.Action, "arguments": request.Input}}
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return Response{}, err
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, m.Endpoint, bytes.NewReader(body))
+	if err != nil {
