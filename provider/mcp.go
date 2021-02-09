@@ -48,3 +48,12 @@ func (m *MCP) Execute(ctx context.Context, request Request) (Response, error) {
 		req.Header.Set("Authorization", "Bearer "+m.Token)
 	}
 	client := m.Client
+	if client == nil {
+		client = &http.Client{Timeout: 60 * time.Second}
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		return Response{}, fmt.Errorf("MCP call: %w", err)
+	}
+	defer resp.Body.Close()
+	raw, err := io.ReadAll(io.LimitReader(resp.Body, 8<<20))
