@@ -22,3 +22,11 @@ type Response struct {
 	Metadata    map[string]string `json:"metadata,omitempty"`
 }
 
+type Provider interface {
+	Execute(context.Context, Request) (Response, error)
+}
+type Func func(context.Context, Request) (Response, error)
+
+func (f Func) Execute(ctx context.Context, r Request) (Response, error) { return f(ctx, r) }
+
+type Registry struct {
