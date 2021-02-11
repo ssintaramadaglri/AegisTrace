@@ -30,3 +30,11 @@ type Func func(context.Context, Request) (Response, error)
 func (f Func) Execute(ctx context.Context, r Request) (Response, error) { return f(ctx, r) }
 
 type Registry struct {
+	mu        sync.RWMutex
+	providers map[string]Provider
+}
+
+func NewRegistry() *Registry { return &Registry{providers: make(map[string]Provider)} }
+func (r *Registry) Register(name string, p Provider) error {
+	if name == "" || p == nil {
+		return fmt.Errorf("provider name and implementation are required")
