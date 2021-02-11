@@ -13,3 +13,12 @@ type Request struct {
 	StepID    string         `json:"step_id"`
 	Action    string         `json:"action,omitempty"`
 	Input     map[string]any `json:"input,omitempty"`
+	MaxTokens int            `json:"max_tokens,omitempty"`
+}
+
+type Response struct {
+	Output      any               `json:"output"`
+	UsageTokens int               `json:"usage_tokens,omitempty"`
+	Metadata    map[string]string `json:"metadata,omitempty"`
+}
+
