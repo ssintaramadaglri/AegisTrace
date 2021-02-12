@@ -38,3 +38,12 @@ func NewRegistry() *Registry { return &Registry{providers: make(map[string]Provi
 func (r *Registry) Register(name string, p Provider) error {
 	if name == "" || p == nil {
 		return fmt.Errorf("provider name and implementation are required")
+	}
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	r.providers[name] = p
+	return nil
+}
+func (r *Registry) Get(name string) (Provider, error) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
