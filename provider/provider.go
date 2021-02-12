@@ -47,3 +47,11 @@ func (r *Registry) Register(name string, p Provider) error {
 func (r *Registry) Get(name string) (Provider, error) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+	p, ok := r.providers[name]
+	if !ok {
+		return nil, fmt.Errorf("provider %q is not registered", name)
+	}
+	return p, nil
+}
+func (r *Registry) Names() []string {
+	r.mu.RLock()
