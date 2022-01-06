@@ -5,3 +5,7 @@ title: "[bug] "
 labels: bug
 ---
 
+## What happened
+
+<!-- A clear, short description of the defect. -->
+
