@@ -9,3 +9,7 @@ labels: bug
 
 <!-- A clear, short description of the defect. -->
 
+## Reproduction
+
+```sh
+# exact commands, artifacts, or workflow snippets
