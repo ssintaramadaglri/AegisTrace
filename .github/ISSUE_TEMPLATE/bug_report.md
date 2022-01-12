@@ -13,3 +13,7 @@ labels: bug
 
 ```sh
 # exact commands, artifacts, or workflow snippets
+```
+
+## Expected behavior
+
