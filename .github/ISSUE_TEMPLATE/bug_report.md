@@ -17,3 +17,7 @@ labels: bug
 
 ## Expected behavior
 
+<!-- What you expected instead. -->
+
+## Environment
+
