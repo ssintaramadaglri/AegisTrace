@@ -3,3 +3,4 @@ contact_links:
   - name: Security reports
     url: https://github.com/ssintaramadaglri/AegisTrace/security/policy
     about: Please report vulnerabilities privately, not in public issues.
+  - name: Usage questions
