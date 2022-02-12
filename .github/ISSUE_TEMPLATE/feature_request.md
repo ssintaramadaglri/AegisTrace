@@ -12,3 +12,6 @@ labels: enhancement
 ## Proposed behavior
 
 <!-- What should AegisTrace do? Keep it within the verification model. -->
+
+## Alternatives considered
+
