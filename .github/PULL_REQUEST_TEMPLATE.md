@@ -2,3 +2,6 @@
 
 <!-- One or two sentences. Link the issue this addresses, if any. -->
 
+## Changes
+
+<!-- What changed and why. Focus on behavior, not file lists. -->
