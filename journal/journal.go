@@ -110,3 +110,27 @@ func Verify(events []Event) error {
 		want, err := hashEvent(e)
 		if err != nil {
 			return err
+		}
+		if have != want {
+			return fmt.Errorf("event %d hash mismatch", i)
+		}
+		previous = have
+	}
+	return nil
+}
+
+func hashEvent(e Event) (string, error) {
+	e.Hash = ""
+	data, err := json.Marshal(struct {
+		Sequence uint64         `json:"sequence"`
+		Time     time.Time      `json:"time"`
+		RunID    string         `json:"run_id"`
+		StepID   string         `json:"step_id,omitempty"`
+		Type     string         `json:"type"`
+		Data     map[string]any `json:"data,omitempty"`
+		Previous string         `json:"previous,omitempty"`
+	}{e.Sequence, e.Time, e.RunID, e.StepID, e.Type, e.Data, e.Previous})
+	if err != nil {
+		return "", fmt.Errorf("canonicalize event: %w", err)
+	}
+	sum := sha256.Sum256(data)
