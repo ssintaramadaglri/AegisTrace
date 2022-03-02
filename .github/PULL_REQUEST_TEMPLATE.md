@@ -10,3 +10,5 @@
 
 - [ ] `go build ./...`
 - [ ] `go vet ./...`
+- [ ] `go test -race ./...`
+- [ ] `gofmt -l .` is clean
