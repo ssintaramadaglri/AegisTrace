@@ -7,3 +7,6 @@
 <!-- What changed and why. Focus on behavior, not file lists. -->
 
 ## Verification
+
+- [ ] `go build ./...`
+- [ ] `go vet ./...`
