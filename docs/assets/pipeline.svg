@@ -24,3 +24,11 @@
     <!-- compile -->
     <rect x="188" y="66" width="120" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
     <text x="248" y="88" fill="#e6eef4">compile</text>
+    <text x="248" y="104" fill="#8ba6bc" font-size="11">reject unknown fields</text>
+
+    <!-- verify -->
+    <rect x="352" y="66" width="120" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="412" y="88" fill="#e6eef4">static verify</text>
+    <text x="412" y="104" fill="#8ba6bc" font-size="11">DAG, budgets, perms</text>
+
+    <!-- sealed artifact -->
