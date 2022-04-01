@@ -16,3 +16,11 @@
   <text x="24" y="34" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#e6eef4">AegisTrace verifiable execution</text>
 
   <g font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">
+    <!-- source -->
+    <rect x="24" y="66" width="120" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="84" y="88" fill="#e6eef4">workflow.yaml</text>
+    <text x="84" y="104" fill="#8ba6bc" font-size="11">strict source</text>
+
+    <!-- compile -->
+    <rect x="188" y="66" width="120" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="248" y="88" fill="#e6eef4">compile</text>
