@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" role="img" aria-label="AegisTrace execution pipeline">
+  <title>AegisTrace execution pipeline</title>
+  <desc>Data flow from YAML workflow source through strict compile and static verify into a sealed artifact, then live execution that records a hash chained journal, checkpoints, and a signed proof, with a separate offline replay path that never contacts a provider.</desc>
+  <defs>
+    <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f7d5b"/>
+    </marker>
+    <marker id="tipRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/>
