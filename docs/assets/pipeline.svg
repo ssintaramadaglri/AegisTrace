@@ -65,3 +65,11 @@
     <!-- journal + proof -->
     <rect x="24" y="212" width="150" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
     <text x="99" y="234" fill="#e6eef4">hash-chained .atlog</text>
+    <text x="99" y="250" fill="#8ba6bc" font-size="11">append-only journal</text>
+
+    <rect x="206" y="212" width="150" height="46" rx="6" fill="#12352a" stroke="#2f7d5b" stroke-width="2"/>
+    <text x="281" y="234" fill="#bfe6d3">signed Merkle proof</text>
+    <text x="281" y="250" fill="#7fbfa1" font-size="11">Ed25519 inclusion</text>
+
+    <rect x="388" y="212" width="104" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="440" y="234" fill="#e6eef4" font-size="12">offline replay</text>
