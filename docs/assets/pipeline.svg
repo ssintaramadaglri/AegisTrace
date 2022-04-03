@@ -32,3 +32,11 @@
     <text x="412" y="104" fill="#8ba6bc" font-size="11">DAG, budgets, perms</text>
 
     <!-- sealed artifact -->
+    <rect x="516" y="60" width="220" height="58" rx="6" fill="#12352a" stroke="#2f7d5b" stroke-width="2"/>
+    <text x="626" y="84" fill="#bfe6d3" font-weight="700">sealed .aegis artifact</text>
+    <text x="626" y="103" fill="#7fbfa1" font-size="11">sha256 digest</text>
+  </g>
+
+  <!-- top row connectors -->
+  <g stroke="#2f7d5b" stroke-width="2" fill="none" marker-end="url(#tip)">
+    <line x1="144" y1="89" x2="184" y2="89"/>
