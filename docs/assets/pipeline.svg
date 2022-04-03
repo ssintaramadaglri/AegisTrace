@@ -49,3 +49,11 @@
   <text x="422" y="146" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#e0a0a0">cycles and undeclared effects rejected</text>
 
   <!-- execution row -->
+  <g font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">
+    <rect x="516" y="150" width="220" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="626" y="172" fill="#e6eef4">runtime execution</text>
+    <text x="626" y="188" fill="#8ba6bc" font-size="11">budgets and approvals</text>
+
+    <rect x="516" y="212" width="104" height="42" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="568" y="230" fill="#e6eef4" font-size="12">provider</text>
+    <text x="568" y="245" fill="#8ba6bc" font-size="10">model / MCP / tool</text>
