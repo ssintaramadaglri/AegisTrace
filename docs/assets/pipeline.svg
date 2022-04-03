@@ -57,3 +57,11 @@
     <rect x="516" y="212" width="104" height="42" rx="6" fill="#182937" stroke="#3c5468"/>
     <text x="568" y="230" fill="#e6eef4" font-size="12">provider</text>
     <text x="568" y="245" fill="#8ba6bc" font-size="10">model / MCP / tool</text>
+
+    <rect x="632" y="212" width="104" height="42" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="684" y="230" fill="#e6eef4" font-size="12">checkpoint</text>
+    <text x="684" y="245" fill="#8ba6bc" font-size="10">atomic state</text>
+
+    <!-- journal + proof -->
+    <rect x="24" y="212" width="150" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
+    <text x="99" y="234" fill="#e6eef4">hash-chained .atlog</text>
