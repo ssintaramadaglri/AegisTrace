@@ -73,3 +73,11 @@
 
     <rect x="388" y="212" width="104" height="46" rx="6" fill="#182937" stroke="#3c5468"/>
     <text x="440" y="234" fill="#e6eef4" font-size="12">offline replay</text>
+    <text x="440" y="250" fill="#8ba6bc" font-size="10">no provider call</text>
+  </g>
+
+  <!-- artifact to runtime -->
+  <path d="M626 118 L626 146" stroke="#2f7d5b" stroke-width="2" fill="none" marker-end="url(#tip)"/>
+
+  <!-- runtime to provider / checkpoint -->
+  <g stroke="#2f7d5b" stroke-width="2" fill="none" marker-end="url(#tip)">
