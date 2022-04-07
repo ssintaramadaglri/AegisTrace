@@ -7,3 +7,10 @@
       <path d="M0 0 L10 5 L0 10 z" fill="#4a6377"/>
     </marker>
   </defs>
+
+  <rect width="700" height="340" fill="#f4f1e9"/>
+  <rect x="0" y="0" width="700" height="4" fill="#2f7d5b"/>
+  <text x="24" y="34" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#1c2b38">Journal chain, Merkle proof, and verification decisions</text>
+
+  <!-- hash chained journal -->
+  <text x="24" y="66" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#5c6b78">append-only journal (each hash names the previous)</text>
