@@ -37,3 +37,10 @@
     </g>
   </g>
   <g stroke="#4a6377" stroke-width="1.8" fill="none" marker-end="url(#a)">
+    <line x1="112" y1="100" x2="136" y2="100"/>
+    <line x1="228" y1="100" x2="252" y2="100"/>
+    <line x1="344" y1="100" x2="368" y2="100"/>
+  </g>
+
+  <!-- merkle tree -->
+  <g font-family="monospace" font-size="11" text-anchor="middle">
