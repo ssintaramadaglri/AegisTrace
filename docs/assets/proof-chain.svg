@@ -29,3 +29,11 @@
       <rect x="256" y="78" width="88" height="44" rx="5" fill="#ffffff" stroke="#4a6377"/>
       <text x="300" y="98" fill="#1c2b38">e2</text>
       <text x="300" y="114" fill="#7c8b98" font-size="10">prev=h1</text>
+    </g>
+    <g>
+      <rect x="372" y="78" width="88" height="44" rx="5" fill="#ffffff" stroke="#4a6377"/>
+      <text x="416" y="98" fill="#1c2b38">e3</text>
+      <text x="416" y="114" fill="#7c8b98" font-size="10">prev=h2</text>
+    </g>
+  </g>
+  <g stroke="#4a6377" stroke-width="1.8" fill="none" marker-end="url(#a)">
