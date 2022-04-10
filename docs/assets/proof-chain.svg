@@ -52,3 +52,11 @@
     <text x="222" y="228" fill="#bfe6d3" font-size="11">root</text>
     <text x="222" y="240" fill="#7fbfa1" font-size="9">Ed25519</text>
   </g>
+  <g stroke="#8a7f68" stroke-width="1.6" fill="none">
+    <path d="M68 122 L96 156"/>
+    <path d="M184 122 L96 156"/>
+    <path d="M300 122 L328 156"/>
+    <path d="M416 122 L328 156"/>
+    <path d="M96 188 L210 210"/>
+    <path d="M328 188 L234 210"/>
+  </g>
