@@ -9,3 +9,7 @@ budget:
   timeout: 30s
 permissions:
   - tool: ticket.create
+metadata:
+  owner: platform-engineering
+steps:
+  - id: classify
