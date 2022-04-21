@@ -13,3 +13,8 @@ metadata:
   owner: platform-engineering
 steps:
   - id: classify
+    kind: model
+    provider: echo
+    input:
+      prompt: ${input.message}
+  - id: preserve
