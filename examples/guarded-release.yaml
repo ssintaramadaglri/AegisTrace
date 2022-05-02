@@ -8,3 +8,7 @@ budget:
   max_tokens: 0
   timeout: 20s
 permissions:
+  - tool: deployment.release
+steps:
+  - id: prepare
+    kind: emit
