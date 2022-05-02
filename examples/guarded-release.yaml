@@ -1,2 +1,6 @@
 name: guarded-release
 version: "1"
+description: Demonstrates a human approval boundary before a side effect
+entry: prepare
+budget:
+  max_steps: 6
