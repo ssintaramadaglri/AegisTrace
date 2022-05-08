@@ -12,3 +12,7 @@ permissions:
 steps:
   - id: prepare
     kind: emit
+    input:
+      release: ${input.release}
+  - id: authorize
+    kind: approval
