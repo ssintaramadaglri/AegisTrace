@@ -16,3 +16,6 @@ steps:
       release: ${input.release}
   - id: authorize
     kind: approval
+    input:
+      release: ${steps.prepare}
+  - id: deploy
