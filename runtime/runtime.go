@@ -227,3 +227,37 @@ func resolve(value any, input, outputs map[string]any) (any, error) {
 		}
 		if strings.HasPrefix(path, "steps.") {
 			value, ok := outputs[strings.TrimPrefix(path, "steps.")]
+			if !ok {
+				return nil, fmt.Errorf("unknown step output %q", path)
+			}
+			return value, nil
+		}
+		return nil, fmt.Errorf("unsupported expression %q", path)
+	case map[string]any:
+		return resolveMap(v, input, outputs)
+	case []any:
+		out := make([]any, len(v))
+		for i := range v {
+			item, err := resolve(v[i], input, outputs)
+			if err != nil {
+				return nil, err
+			}
+			out[i] = item
+		}
+		return out, nil
+	default:
+		return value, nil
+	}
+}
+func lookup(values map[string]any, path string) (any, bool) {
+	var current any = values
+	for _, part := range strings.Split(path, ".") {
+		object, ok := current.(map[string]any)
+		if !ok {
+			return nil, false
+		}
+		current, ok = object[part]
+		if !ok {
+			return nil, false
+		}
+	}
