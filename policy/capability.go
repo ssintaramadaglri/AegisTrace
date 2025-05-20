@@ -68,3 +68,18 @@ func Verify(token string, public ed25519.PublicKey, requiredScope string, now ti
 		return claims, fmt.Errorf("capability expired")
 	}
 	if requiredScope != "" && !allows(claims.Scopes, requiredScope) {
+		return claims, fmt.Errorf("scope %q is not granted", requiredScope)
+	}
+	return claims, nil
+}
+
+func allows(scopes []string, required string) bool {
+	for _, scope := range scopes {
+		if scope == "*" || scope == required {
+			return true
+		}
+		if strings.HasSuffix(scope, ":*") && strings.HasPrefix(required, strings.TrimSuffix(scope, "*")) {
+			return true
+		}
+	}
+	return false
