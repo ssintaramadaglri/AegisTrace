@@ -264,6 +264,3 @@ Every source file must remain below 500 lines. Contributions should add focused 
 
 ## License
 
-MIT License. See [LICENSE](LICENSE).
-
-<!-- draft note 845 -->
