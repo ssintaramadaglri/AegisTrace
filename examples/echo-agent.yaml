@@ -22,3 +22,10 @@ steps:
   - id: create
     kind: tool
     provider: echo
+    action: ticket.create
+    input:
+      classification: ${steps.classify}
+  - id: result
+    kind: emit
+    input:
+      ticket: ${steps.create}
