@@ -21,3 +21,7 @@ Hash chaining provides integrity evidence, not encryption. Journals may contain 
 ## Cryptography
 
 AegisTrace uses cryptographic implementations from Go's standard library. It does not invent encryption, signature, or hashing algorithms. Post-quantum algorithms are not currently used by the stable formats.
+
+## Scope
+
+Security issues include verifier bypasses, digest confusion, journal-chain forgery, proof verification errors, capability escalation, credential leakage, unsafe path handling, and provider response handling that crosses documented limits. Model hallucinations and malicious output from an explicitly configured provider are outside the cryptographic guarantee, although unsafe runtime handling remains in scope.
