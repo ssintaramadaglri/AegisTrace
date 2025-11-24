@@ -37,3 +37,10 @@ External model and tool services are nondeterministic. A live AegisTrace run the
 
 Artifact sealing, journal chaining, Merkle trees, proof signatures, and capabilities use separate serialized messages. Signature inputs include explicit protocol labels to prevent cross-protocol reuse. AegisTrace uses Go's standard SHA-256 and Ed25519 implementations and does not implement cryptographic primitives.
 
+## Failure model
+
+Compilation and load fail closed. Provider failures follow an admitted `on_error` edge when present; otherwise the run records a terminal failure. Journal writes are synced before execution proceeds. Checkpoints are written to a temporary file and atomically renamed.
+
+## Extension points
+
+Providers implement one context-aware method. Checkpoint storage and approval decisions are interfaces. These boundaries support future database, queue, policy-engine, and telemetry integrations without changing workflow or proof formats.
