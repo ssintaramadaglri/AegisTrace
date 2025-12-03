@@ -100,3 +100,20 @@ All notable changes follow Keep a Changelog. Versions use semantic versioning.
 ## [0.3.0] - 2018-04-09
 
 ### Added
+
+- Static verifier: reachability, reference, and tool-permission checks
+- Scoped capability tokens signed with Ed25519
+
+## [0.2.0] - 2017-06-15
+
+### Added
+
+- Strict YAML compiler with unknown-field rejection
+- SHA-256 workflow digest sealing
+
+## [0.1.0] - 2016-12-02
+
+### Added
+
+- Initial `aegis` CLI: `compile`, `verify`, and `run`
+- Portable workflow schema prototype
