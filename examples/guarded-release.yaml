@@ -19,3 +19,10 @@ steps:
     input:
       release: ${steps.prepare}
   - id: deploy
+    kind: tool
+    provider: echo
+    action: deployment.release
+    input:
+      release: ${steps.prepare}
+  - id: checkpoint
+    kind: checkpoint
