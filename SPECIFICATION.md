@@ -26,3 +26,8 @@ Leaves are the 32-byte journal event hashes. Internal nodes are SHA-256 of byte 
 
 ## Capability
 
+A capability has base64url JSON claims and an Ed25519 signature separated by a period. The signature input is `aegis-cap/v1.` followed by the raw claim bytes. Claims include issuer, subject, scopes, issue time, expiry, and random nonce. Maximum accepted issuance lifetime is 24 hours.
+
+## Checkpoint
+
+A checkpoint contains the artifact digest, next step, accumulated outputs, counters, run ID, save time, and format version. Checkpoints are confidential runtime state, not cryptographic proofs.
