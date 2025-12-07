@@ -16,3 +16,6 @@ The MCP adapter sends JSON-RPC 2.0 method `tools/call` with the admitted workflo
 
 Replay performs no provider call. It parses all journal events, verifies sequence and hash links, and reconstructs completed step outputs in journal order. A recorded terminal failure is returned as a replay error.
 
+## Stability
+
+Persisted format identifiers are stable within major format versions. Provider response parsing may expand compatibly. A future distributed protocol will be versioned independently and will not redefine artifact or proof semantics.
