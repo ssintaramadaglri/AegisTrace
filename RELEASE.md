@@ -7,3 +7,5 @@
 5. Create a signed semantic-version tag.
 6. Build archives with GoReleaser and publish checksums.
 7. Verify one archive on each supported operating-system family.
+
+Release keys must be separate from journal-attestation keys. Failed releases are replaced by a new patch version rather than silently modifying published artifacts.
