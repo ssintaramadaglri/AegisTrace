@@ -75,3 +75,18 @@
     <text x="498" y="115" fill="#8a2b2b" font-size="11">chain breaks, replay blocked</text>
 
     <rect x="486" y="134" width="190" height="40" rx="5" fill="#e6f2ec" stroke="#2f7d5b"/>
+    <text x="498" y="151" fill="#1f6349" font-weight="600">valid inclusion path</text>
+    <text x="498" y="167" fill="#1f6349" font-size="11">proof verifies without journal</text>
+
+    <rect x="486" y="186" width="190" height="40" rx="5" fill="#e6f2ec" stroke="#2f7d5b"/>
+    <text x="498" y="203" fill="#1f6349" font-weight="600">offline replay</text>
+    <text x="498" y="219" fill="#1f6349" font-size="11">no provider is contacted</text>
+
+    <rect x="486" y="238" width="190" height="40" rx="5" fill="#f7e6e4" stroke="#b23b3b"/>
+    <text x="498" y="255" fill="#8a2b2b" font-weight="600">expired capability</text>
+    <text x="498" y="271" fill="#8a2b2b" font-size="11">scope or expiry rejected</text>
+  </g>
+
+  <text x="24" y="300" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#5c6b78">A valid artifact proves structure and integrity. It does not certify that a model response is correct or a permitted tool is safe.</text>
+  <text x="24" y="320" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#5c6b78">Green marks what AegisTrace verifies. Red marks what it refuses.</text>
+</svg>
