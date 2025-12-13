@@ -81,3 +81,20 @@
 
   <!-- runtime to provider / checkpoint -->
   <g stroke="#2f7d5b" stroke-width="2" fill="none" marker-end="url(#tip)">
+    <path d="M600 196 L568 208"/>
+    <path d="M652 196 L684 208"/>
+  </g>
+
+  <!-- runtime to journal (recorded effects) -->
+  <path d="M516 178 C 300 178, 160 190, 108 208" stroke="#2f7d5b" stroke-width="2" fill="none" marker-end="url(#tip)"/>
+  <!-- journal to proof and replay -->
+  <g stroke="#2f7d5b" stroke-width="2" fill="none" marker-end="url(#tip)">
+    <path d="M174 235 L202 235"/>
+    <path d="M356 235 L384 235"/>
+  </g>
+
+  <!-- travelling marker down the trusted path to show progression -->
+  <circle r="4" fill="#7fd0aa">
+    <animateMotion dur="4.6s" repeatCount="indefinite" path="M84,112 L84,89 L512,89 M626,118 L626,150 M516,178 C300,178 160,190 108,208 L174,235 L356,235"/>
+  </circle>
+</svg>
