@@ -32,3 +32,9 @@ AegisTrace considers malicious workflow authors, compromised or misleading model
 - Host integrity when the operating system is compromised
 
 ## Primary controls
+
+Artifacts are verified both at compilation and load. Tool permissions are exact by default. Runtime effects cross a narrow provider interface. Provider credentials come from environment configuration rather than artifacts. Journals use owner-only creation permissions where supported. Proof and capability signatures use protocol-specific domain separation.
+
+## Deployment guidance
+
+Run workers with least-privilege service identities, separate model and tool credentials, deny unrestricted MCP tools, isolate untrusted tools, redact data before provider calls, encrypt journal storage, rotate signing keys, cap workflow budgets, and require human approval before irreversible effects.
