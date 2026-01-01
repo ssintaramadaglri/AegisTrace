@@ -15,3 +15,10 @@ labels: enhancement
 
 ## Alternatives considered
 
+<!-- Workarounds you tried, and why they are not enough. -->
+
+## Scope notes
+
+<!-- Does this affect formats (aegis/v1, journal, proofs, capability tokens)? -->
+
+<!-- draft note 1046 -->
