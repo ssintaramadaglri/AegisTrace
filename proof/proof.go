@@ -161,4 +161,4 @@ func nodeHash(left, right []byte) []byte {
 	return sum[:]
 }
 
-// draft note 1047
+// draft note 1050
