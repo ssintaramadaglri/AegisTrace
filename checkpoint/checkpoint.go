@@ -56,3 +56,20 @@ func (s FileStore) Save(state State) error {
 
 func (s FileStore) Load(runID string) (State, error) {
 	var state State
+	if !safeID.MatchString(runID) {
+		return state, fmt.Errorf("invalid run id")
+	}
+	data, err := os.ReadFile(filepath.Join(s.Directory, runID+".json"))
+	if err != nil {
+		return state, err
+	}
+	if err := json.Unmarshal(data, &state); err != nil {
+		return state, err
+	}
+	if state.Version != "aegis-checkpoint/v1" || state.RunID != runID {
+		return state, fmt.Errorf("invalid checkpoint")
+	}
+	return state, nil
+}
+
+// draft note 1048
