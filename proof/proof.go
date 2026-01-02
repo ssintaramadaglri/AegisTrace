@@ -133,3 +133,32 @@ func eventLeaves(events []journal.Event) ([][]byte, error) {
 			return nil, fmt.Errorf("event %d has invalid hash", i)
 		}
 		out[i] = raw
+	}
+	return out, nil
+}
+
+func merklePath(leaves [][]byte, index int) ([]Sibling, []byte) {
+	level := leaves
+	position := index
+	var path []Sibling
+	for len(level) > 1 {
+		if len(level)%2 == 1 {
+			level = append(level, level[len(level)-1])
+		}
+		sibling := position ^ 1
+		path = append(path, Sibling{hex.EncodeToString(level[sibling]), sibling < position})
+		next := make([][]byte, 0, len(level)/2)
+		for i := 0; i < len(level); i += 2 {
+			next = append(next, nodeHash(level[i], level[i+1]))
+		}
+		level, position = next, position/2
+	}
+	return path, level[0]
+}
+
+func nodeHash(left, right []byte) []byte {
+	sum := sha256.Sum256(append(append([]byte{1}, left...), right...))
+	return sum[:]
+}
+
+// draft note 1047
