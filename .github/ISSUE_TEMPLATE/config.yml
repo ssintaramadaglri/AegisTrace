@@ -4,3 +4,7 @@ contact_links:
     url: https://github.com/ssintaramadaglri/AegisTrace/security/policy
     about: Please report vulnerabilities privately, not in public issues.
   - name: Usage questions
+    url: https://github.com/ssintaramadaglri/AegisTrace/discussions
+    about: Ask questions about workflows, artifacts, and replay here.
+
+// draft note 1049
