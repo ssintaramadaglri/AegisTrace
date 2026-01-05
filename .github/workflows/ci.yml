@@ -19,3 +19,12 @@ jobs:
           cache: true
       - run: go mod verify
       - run: test -z "$(gofmt -l .)"
+      - run: go vet ./...
+      - run: go test -race -coverprofile=coverage.out ./...
+      - run: go build -trimpath ./cmd/aegis
+      - name: Enforce source file size
+        run: |
+          oversize=$(find . -name '*.go' -print0 | xargs -0 wc -l | awk '$1 > 500 && $2 != "total" {print}')
+          test -z "$oversize" || { echo "$oversize"; exit 1; }
+
+// draft note 1051
