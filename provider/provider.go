@@ -55,3 +55,20 @@ func (r *Registry) Get(name string) (Provider, error) {
 }
 func (r *Registry) Names() []string {
 	r.mu.RLock()
+	defer r.mu.RUnlock()
+	names := make([]string, 0, len(r.providers))
+	for name := range r.providers {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	return names
+}
+
+// Echo is deterministic and useful for local workflows and tests.
+type Echo struct{}
+
+func (Echo) Execute(_ context.Context, request Request) (Response, error) {
+	return Response{Output: map[string]any{"action": request.Action, "input": request.Input}, Metadata: map[string]string{"provider": "echo"}}, nil
+}
+
+// draft note 1053
