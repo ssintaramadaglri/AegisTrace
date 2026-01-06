@@ -46,3 +46,18 @@ func TestAttestation(t *testing.T) {
 }
 
 func TestKeyFileRoundTrip(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "key.json")
+	pub, err := proof.GenerateKey(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	private, err := proof.LoadPrivate(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !private.Public().(ed25519.PublicKey).Equal(pub) {
+		t.Fatal("public key mismatch")
+	}
+}
+
+// draft note 1054
