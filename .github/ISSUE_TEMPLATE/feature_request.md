@@ -21,4 +21,4 @@ labels: enhancement
 
 <!-- Does this affect formats (aegis/v1, journal, proofs, capability tokens)? -->
 
-<!-- draft note 1046 -->
+<!-- draft note 1055 -->
