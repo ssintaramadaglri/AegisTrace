@@ -25,3 +25,13 @@ func TestCapabilityScopeAndExpiry(t *testing.T) {
 	}
 	if claims.Subject != "worker-1" {
 		t.Fatal("wrong subject")
+	}
+	if _, err := policy.Verify(token, public, "github:write", now); err == nil {
+		t.Fatal("ungranted scope accepted")
+	}
+	if _, err := policy.Verify(token, public, "ticket:create", now.Add(time.Minute)); err == nil {
+		t.Fatal("expired token accepted")
+	}
+}
+
+// draft note 1056
