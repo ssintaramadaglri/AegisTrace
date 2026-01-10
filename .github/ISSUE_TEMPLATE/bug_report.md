@@ -21,3 +21,12 @@ labels: bug
 
 ## Environment
 
+- AegisTrace version (`aegis version`):
+- Go version (`go version`):
+- OS:
+
+## Logs
+
+<!-- Relevant journal events (aegis inspect) or CLI output. Do not attach secrets. -->
+
+<!-- draft note 1058 -->
