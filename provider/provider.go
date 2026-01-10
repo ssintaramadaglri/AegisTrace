@@ -71,4 +71,4 @@ func (Echo) Execute(_ context.Context, request Request) (Response, error) {
 	return Response{Output: map[string]any{"action": request.Action, "input": request.Input}, Metadata: map[string]string{"provider": "echo"}}, nil
 }
 
-// draft note 1053
+// draft note 1057
