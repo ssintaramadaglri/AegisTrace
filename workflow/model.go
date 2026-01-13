@@ -92,3 +92,22 @@ func NewArtifact(w Workflow, now time.Time) (Artifact, error) {
 	digest, err := Digest(w)
 	if err != nil {
 		return Artifact{}, err
+	}
+	return Artifact{Magic: ArtifactMagic, Format: ArtifactVersion, Digest: digest, CompiledAt: now.UTC(), Workflow: w}, nil
+}
+
+func (a Artifact) ValidateSeal() error {
+	if a.Magic != ArtifactMagic || a.Format != ArtifactVersion {
+		return fmt.Errorf("unsupported artifact %q/%q", a.Magic, a.Format)
+	}
+	digest, err := Digest(a.Workflow)
+	if err != nil {
+		return err
+	}
+	if digest != a.Digest {
+		return fmt.Errorf("artifact digest mismatch: have %s, computed %s", a.Digest, digest)
+	}
+	return nil
+}
+
+// draft note 1061
