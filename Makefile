@@ -26,3 +26,10 @@ check: vet race
 
 smoke: build
 	./$(BINARY) compile examples/echo-agent.yaml -o smoke.aegis
+	./$(BINARY) verify smoke.aegis
+
+clean:
+	rm -f $(BINARY) $(BINARY).exe smoke.aegis run.atlog proof.json
+	rm -rf .aegis dist
+
+<!-- draft note 1059 -->
