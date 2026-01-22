@@ -12,3 +12,10 @@
 - [ ] `go vet ./...`
 - [ ] `go test -race ./...`
 - [ ] `gofmt -l .` is clean
+- [ ] Every source file stays below 500 lines
+
+## Compatibility
+
+<!-- Does this touch artifacts (aegis/v1), journals, proofs, checkpoints, or capability tokens? -->
+
+<!-- draft note 1062 -->
