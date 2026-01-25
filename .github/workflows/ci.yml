@@ -27,4 +27,4 @@ jobs:
           oversize=$(find . -name '*.go' -print0 | xargs -0 wc -l | awk '$1 > 500 && $2 != "total" {print}')
           test -z "$oversize" || { echo "$oversize"; exit 1; }
 
-// draft note 1051
+// draft note 1063
