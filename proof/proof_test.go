@@ -60,4 +60,4 @@ func TestKeyFileRoundTrip(t *testing.T) {
 	}
 }
 
-// draft note 1054
+// draft note 1064
