@@ -57,3 +57,18 @@ func (m *MCP) Execute(ctx context.Context, request Request) (Response, error) {
 	}
 	defer resp.Body.Close()
 	raw, err := io.ReadAll(io.LimitReader(resp.Body, 8<<20))
+	if err != nil {
+		return Response{}, err
+	}
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		return Response{}, fmt.Errorf("MCP returned %s: %s", resp.Status, raw)
+	}
+	var decoded rpcResponse
+	if err := json.Unmarshal(raw, &decoded); err != nil {
+		return Response{}, fmt.Errorf("decode MCP response: %w", err)
+	}
+	if decoded.Error != nil {
+		return Response{}, fmt.Errorf("MCP error %d: %s", decoded.Error.Code, decoded.Error.Message)
+	}
+	return Response{Output: decoded.Result, Metadata: map[string]string{"provider": "mcp", "tool": request.Action}}, nil
+}
