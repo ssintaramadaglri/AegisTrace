@@ -109,5 +109,3 @@ func (a Artifact) ValidateSeal() error {
 	}
 	return nil
 }
-
-// draft note 1061
