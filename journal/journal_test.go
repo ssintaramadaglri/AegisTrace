@@ -29,3 +29,12 @@ func TestJournalRoundTripAndTamperDetection(t *testing.T) {
 	}
 	if len(events) != 2 {
 		t.Fatalf("got %d events", len(events))
+	}
+	if err := journal.Verify(events); err != nil {
+		t.Fatal(err)
+	}
+	events[0].Data["input"] = "tampered"
+	if err := journal.Verify(events); err == nil || !strings.Contains(err.Error(), "hash mismatch") {
+		t.Fatalf("expected tamper failure, got %v", err)
+	}
+}
