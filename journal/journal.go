@@ -134,3 +134,5 @@ func hashEvent(e Event) (string, error) {
 		return "", fmt.Errorf("canonicalize event: %w", err)
 	}
 	sum := sha256.Sum256(data)
+	return hex.EncodeToString(sum[:]), nil
+}
