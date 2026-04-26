@@ -71,5 +71,3 @@ func (s FileStore) Load(runID string) (State, error) {
 	}
 	return state, nil
 }
-
-// draft note 1048
