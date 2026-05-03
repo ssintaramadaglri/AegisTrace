@@ -83,3 +83,4 @@ func allows(scopes []string, required string) bool {
 		}
 	}
 	return false
+}
