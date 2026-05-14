@@ -33,5 +33,3 @@ func TestCapabilityScopeAndExpiry(t *testing.T) {
 		t.Fatal("expired token accepted")
 	}
 }
-
-// draft note 1056
