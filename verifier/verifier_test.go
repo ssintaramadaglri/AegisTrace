@@ -29,3 +29,11 @@ func TestVerifyRejectsCycleAndUnreachableStep(t *testing.T) {
 	}
 }
 
+func TestVerifyRejectsUnpermittedTool(t *testing.T) {
+	w := base()
+	w.Steps[0] = workflow.Step{ID: "a", Kind: "tool", Provider: "echo", Action: "system.delete"}
+	err := verifier.Verify(w).Error()
+	if err == nil || !strings.Contains(err.Error(), "not permitted") {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
