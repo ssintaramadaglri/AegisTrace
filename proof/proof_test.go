@@ -59,5 +59,3 @@ func TestKeyFileRoundTrip(t *testing.T) {
 		t.Fatal("public key mismatch")
 	}
 }
-
-// draft note 1064
