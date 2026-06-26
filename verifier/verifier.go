@@ -139,3 +139,5 @@ func verifyGraph(entry string, steps map[string]workflow.Step, r *Report) {
 		if !reachable[id] {
 			r.Issues = append(r.Issues, Issue{"steps." + id, "is unreachable"})
 		}
+	}
+}
