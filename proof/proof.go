@@ -160,5 +160,3 @@ func nodeHash(left, right []byte) []byte {
 	sum := sha256.Sum256(append(append([]byte{1}, left...), right...))
 	return sum[:]
 }
-
-// draft note 1050
