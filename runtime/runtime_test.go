@@ -58,3 +58,15 @@ func TestRunCheckpointAndReplay(t *testing.T) {
 	events, err := journal.Load(path)
 	if err != nil {
 		t.Fatal(err)
+	}
+	replayed, err := aegisruntime.Replay(events)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if replayed.Steps != 3 || replayed.RunID != "integration-run" || replayed.ToolCalls != 1 || replayed.Tokens != 4 {
+		t.Fatalf("unexpected replay: %+v", replayed)
+	}
+	if calls != 2 {
+		t.Fatal("replay invoked provider")
+	}
+}
