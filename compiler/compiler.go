@@ -77,3 +77,19 @@ func Save(path string, artifact workflow.Artifact) error {
 func Load(path string) (workflow.Artifact, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
+		return workflow.Artifact{}, fmt.Errorf("read artifact: %w", err)
+	}
+	var artifact workflow.Artifact
+	dec := json.NewDecoder(bytes.NewReader(data))
+	dec.DisallowUnknownFields()
+	if err := dec.Decode(&artifact); err != nil {
+		return artifact, fmt.Errorf("decode artifact: %w", err)
+	}
+	if err := artifact.ValidateSeal(); err != nil {
+		return artifact, err
+	}
+	if err := verifier.Verify(artifact.Workflow).Error(); err != nil {
+		return artifact, err
+	}
+	return artifact, nil
+}
