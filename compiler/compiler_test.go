@@ -65,3 +65,16 @@ func TestCompileNormalizesAndSeals(t *testing.T) {
 	}
 	data = []byte(strings.Replace(string(data), `"name": "test"`, `"name": "changed"`, 1))
 	if err := os.WriteFile(path, data, 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := compiler.Load(path); err == nil || !strings.Contains(err.Error(), "digest mismatch") {
+		t.Fatalf("expected digest failure, got %v", err)
+	}
+}
+
+func TestCompileRejectsUnknownField(t *testing.T) {
+	_, _, err := compiler.Compile([]byte("name: x\nunknown: true\n"), time.Now())
+	if err == nil || !strings.Contains(err.Error(), "field unknown") {
+		t.Fatalf("expected strict parse error, got %v", err)
+	}
+}
