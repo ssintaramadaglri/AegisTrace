@@ -261,3 +261,5 @@ func lookup(values map[string]any, path string) (any, bool) {
 			return nil, false
 		}
 	}
+	return current, true
+}
