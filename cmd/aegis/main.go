@@ -278,3 +278,42 @@ func randomID() (string, error) {
 	raw := make([]byte, 12)
 	if _, err := rand.Read(raw); err != nil {
 		return "", err
+	}
+	return hex.EncodeToString(raw), nil
+}
+func printJSON(value any) error {
+	encoder := json.NewEncoder(os.Stdout)
+	encoder.SetIndent("", "  ")
+	return encoder.Encode(value)
+}
+func env(key, fallback string) string {
+	if value := os.Getenv(key); value != "" {
+		return value
+	}
+	return fallback
+}
+func usage() {
+	fmt.Fprintln(os.Stderr, "AegisTrace", version, "— verifiable AI agent runtime\n\nCommands: compile verify run replay inspect keygen prove verify-proof version")
+}
+
+func interspersed(args []string) []string {
+	flags := make([]string, 0, len(args))
+	positional := make([]string, 0, len(args))
+	for i := 0; i < len(args); i++ {
+		arg := args[i]
+		if arg == "--approve" || arg == "-approve" {
+			flags = append(flags, arg)
+			continue
+		}
+		if strings.HasPrefix(arg, "-") {
+			flags = append(flags, arg)
+			if !strings.Contains(arg, "=") && i+1 < len(args) {
+				i++
+				flags = append(flags, args[i])
+			}
+			continue
+		}
+		positional = append(positional, arg)
+	}
+	return append(flags, positional...)
+}
