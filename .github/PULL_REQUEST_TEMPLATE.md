@@ -17,5 +17,3 @@
 ## Compatibility
 
 <!-- Does this touch artifacts (aegis/v1), journals, proofs, checkpoints, or capability tokens? -->
-
-<!-- draft note 1062 -->
