@@ -31,5 +31,3 @@ smoke: build
 clean:
 	rm -f $(BINARY) $(BINARY).exe smoke.aegis run.atlog proof.json
 	rm -rf .aegis dist
-
-<!-- draft note 1059 -->
