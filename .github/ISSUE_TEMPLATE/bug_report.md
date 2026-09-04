@@ -28,5 +28,3 @@ labels: bug
 ## Logs
 
 <!-- Relevant journal events (aegis inspect) or CLI output. Do not attach secrets. -->
-
-<!-- draft note 1058 -->
