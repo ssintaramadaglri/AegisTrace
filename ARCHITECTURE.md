@@ -39,7 +39,7 @@ Artifact sealing, journal chaining, Merkle trees, proof signatures, and capabili
 
 ## Failure model
 
-Compilation and load fail closed. Provider failures follow an admitted `on_error` edge when present; otherwise the run records a terminal failure. Journal writes are synced before execution proceeds. Checkpoints are written to a temporary file and atomically renamed.
+Compilation and load fail closed. Provider failures follow an admitted `on_error` edge when present; otherwise the run records a terminal failure. Journal writes are synced before execution proceeds. Checkpoints are written to a temporary file and atomically renamed. A checkpoint is only accepted at load time when its artifact digest matches the sealed workflow, so resuming from a file that belongs to another run fails closed.
 
 ## Extension points
 
