@@ -29,6 +29,7 @@
 
 ## Future research
 
+- A policy cookbook of common approval and budget patterns
 - Compact verified workflow bytecode
 - Hardware-backed attestation keys
 - Hybrid post-quantum proof profiles using standardized libraries
