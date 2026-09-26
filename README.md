@@ -84,6 +84,7 @@ The runtime fails closed at each boundary:
 - Modified or unknown artifact formats stop loading.
 - Missing inputs and prior-step outputs stop the affected step.
 - Provider response bodies larger than 8 MiB are rejected.
+- A checkpoint whose artifact digest does not match the sealed workflow is not loaded.
 - Workflow deadlines cancel in-flight HTTP requests.
 - Exhausted step, tool, or token budgets terminate the run.
 - Missing approval prevents guarded execution.
