@@ -18,7 +18,7 @@ Input values may reference `${input.path}` or `${steps.id}`. References are reso
 
 A journal is UTF-8 JSONL. Event sequence starts at zero. Each event contains sequence, UTC time, run ID, optional step ID, type, optional data, previous hash, and hash.
 
-The hash is lowercase hexadecimal SHA-256 over the JSON encoding of all event fields except `hash`. The first event has an empty previous hash. Every later event must name the preceding event hash.
+The hash is lowercase hexadecimal SHA-256 over the JSON encoding of all event fields except `hash`. The first event has an empty previous hash. Every later event must name the preceding event hash. Event time is recorded in UTC and is informational: verification depends on sequence and hash links, not on wall-clock ordering.
 
 ## Merkle proof
 
